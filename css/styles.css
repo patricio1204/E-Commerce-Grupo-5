@@ -179,6 +179,43 @@ main {
   min-height: calc(100vh - 210px);
 }
 
+
+.campos {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+/* Estilos para los campos de entrada */
+
+input[type="text"],
+input[type="password"] {
+  
+  padding: 10px;
+  border: none;
+  background-color: #FF7700;
+  border-radius: 12px;
+  width: 250px;
+  font-size: 14px;
+  
+}
+/* Estilos para el texto de los campos de entrada */
+
+
+.boton {
+  padding: 10px;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  
+}
+  
+/* Estilos para el botón de envío */
+
 a.custom-card,
 a.custom-card:hover {
   color: inherit;
@@ -188,3 +225,4 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
