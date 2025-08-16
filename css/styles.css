@@ -179,6 +179,100 @@ main {
   min-height: calc(100vh - 210px);
 }
 
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 2px solid #FF7700; /* Cambia el color del borde */
+  border-radius: 15px;
+  padding: 30px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 20rem;
+  margin: 0 auto;
+}
+/* Estilos para los campos de entrada */
+
+.campos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: rgb(0, 0, 0);
+  width: 100%;
+}
+
+.campos label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* intento de prevenir que el label cambie de color */
+.campos input:-webkit-autofill + label,
+.campos input:-webkit-autofill:hover + label,
+.campos input:-webkit-autofill:focus + label,
+.campos input:-webkit-autofill:active + label {
+  -webkit-text-fill-color:inherit !important;
+  color:#FF7700  !important;
+  background-color: #FF7700 !important;
+}
+
+
+::-webkit-input-placeholder {
+  color: black;
+}
+
+input[type="text"],
+input[type="password"] {
+  
+  padding: 10px;
+  border: none;
+  background-color: #FF7700;
+  border-radius: 12px;
+  width: 100%;
+  font-size: 14px;
+  box-sizing: border-box;
+  color: black;
+  
+}
+/* Estilos para el texto de los campos de entrada */
+
+.boton {
+  background-color: #FF7700;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+
+
+
+
+
+.boton:hover {
+  background-color: #e06600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease; /*demora de transición de color de fondo*/
+  transform:translateY(-2px);
+}
+
+.boton:active {
+  background-color: #d45500;
+  box-shadow: none;
+  transform: translateY(0);
+}
+
 a.custom-card,
 a.custom-card:hover {
   color: inherit;
@@ -188,3 +282,4 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+

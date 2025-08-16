@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script defer src="js/login.js"></script>
   <style>
     body {
       background-color: rgb(248, 249, 250);
@@ -16,13 +17,48 @@
   </style>
 </head>
 
+  
 <body>
-  <main class="mt-5">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
+  <main class="mt-5">
+        <form>
+           <div class="contenedor">
+                  <div class="campos">
+                    <label  for="Usuario">Usuario</label>
+                    <input type="text" name="Usuario" placeholder="Ingrese su usuario" required>
+                  </div>
+                  <br>
+                  <div class="campos">  
+                    <label for="Contrasena">Contraseña</label>
+                    <input type="password"  name="Contrasena"  placeholder="Ingrese su contraseña"required>
+                  </div>
+                  <br>
+                   <button type="button" class="boton" id="btnIngresar">Ingresar</button>
+            </div>        
+        </form>
+ 
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -32,7 +68,6 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
-  <script src="js/login.js"></script>
 </body>
 
 </html>
