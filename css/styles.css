@@ -176,80 +176,102 @@ footer p {
 }
 
 main {
-  display: flex;
-  justify-content: center; /* centra horizontal */
-  min-height: 100vh;       /* toda la pantalla */
-  background: #f9f9f9;
-  padding: 1rem;
-  box-sizing:content-box;
-}
-form {
-  max-width: 340px;
-  width: 100%;
-  max-height: max-content;
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-.campos div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  min-height: calc(100vh - 210px);
 }
 
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 2px solid #FF7700; /* Cambia el color del borde */
+  border-radius: 15px;
+  padding: 30px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 20rem;
+  margin: 0 auto;
+}
 /* Estilos para los campos de entrada */
+
+.campos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: rgb(0, 0, 0);
+  width: 100%;
+}
+
+.campos label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* intento de prevenir que el label cambie de color */
+.campos input:-webkit-autofill + label,
+.campos input:-webkit-autofill:hover + label,
+.campos input:-webkit-autofill:focus + label,
+.campos input:-webkit-autofill:active + label {
+  -webkit-text-fill-color:inherit !important;
+  color:#FF7700  !important;
+  background-color: #FF7700 !important;
+}
+
+
+::-webkit-input-placeholder {
+  color: black;
+}
 
 input[type="text"],
 input[type="password"] {
-  background-color: #FF7700;
-  border: none;
-  border-radius: 12px;
+  
   padding: 10px;
+  border: none;
+  background-color: #FF7700;
+  border-radius: 12px;
+  width: 100%;
   font-size: 14px;
-  width: 100%; /* ocupar todo ancho del form */
   box-sizing: border-box;
-  color: #fff;
+  color: black;
+  
 }
-
-label {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
 /* Estilos para el texto de los campos de entrada */
 
-
 .boton {
+  background-color: #FF7700;
   border: none;
-  border-radius: 30px; /* bordes redondeados */
-  padding: 12px 40px;
-  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
   font-weight: 600;
-  cursor: pointer; /* convertir en una manito */
-  box-shadow: 0 8px 15px rgba(37, 117, 252, 0.3);
-  transition: all 0.3s ease;
-  letter-spacing: 1px;
-  box-sizing: border-box;
-  color: rgb(219, 129, 25); /* la letra del boton*/
+  cursor: pointer;
   display: block;
-  margin: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
 }
+
+
+
+
+
 
 
 .boton:hover {
-  box-shadow: 0 15px 20px rgba(37, 117, 252, 0.5);
-  transform: translateY(-3px); /* el pique del Nahu */
+  background-color: #e06600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease; /*demora de transición de color de fondo*/
+  transform:translateY(-2px);
 }
-.boton:active{
-  transform: translateY(-1px);
-  box-shadow: 0 7px 10px rgba(37, 117, 252, 0.2);  
+
+.boton:active {
+  background-color: #d45500;
+  box-shadow: none;
+  transform: translateY(0);
 }
-  
-/* Estilos para el botón de envío */
 
 a.custom-card,
 a.custom-card:hover {
