@@ -210,7 +210,7 @@ main {
   margin-bottom: 5px;
 }
 
-/* intento de prevenir que el label cambie de color */
+/* intento de prevenir que el label cambie de color 
 .campos input:-webkit-autofill + label,
 .campos input:-webkit-autofill:hover + label,
 .campos input:-webkit-autofill:focus + label,
@@ -218,6 +218,18 @@ main {
   -webkit-text-fill-color:inherit !important;
   color:#FF7700  !important;
   background-color: #FF7700 !important;
+}
+  */
+/* Sugerencia de Code para que el input no cambie de color al usar autocompletar
+La cuestion está en usar el webkit box shadow por un tema de que los navegadores ignoran muchos estilos directos y sólo permiten el truco del box-shadow para inputs autocompletados.
+ */
+.campos input:-webkit-autofill,
+.campos input:-webkit-autofill:hover,
+.campos input:-webkit-autofill:focus,
+.campos input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #FF7700 inset !important;
+  -webkit-text-fill-color: #000 !important; 
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 
