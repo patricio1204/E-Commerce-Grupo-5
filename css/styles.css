@@ -176,42 +176,77 @@ footer p {
 }
 
 main {
-  min-height: calc(100vh - 210px);
+  display: flex;
+  justify-content: center; /* centra horizontal */
+  min-height: 100vh;       /* toda la pantalla */
+  background: #f9f9f9;
+  padding: 1rem;
+  box-sizing:content-box;
+}
+form {
+  max-width: 340px;
+  width: 100%;
+  max-height: max-content;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.campos div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-
-.campos {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5rem;
-}
 /* Estilos para los campos de entrada */
 
 input[type="text"],
 input[type="password"] {
-  
-  padding: 10px;
-  border: none;
   background-color: #FF7700;
+  border: none;
   border-radius: 12px;
-  width: 250px;
+  padding: 10px;
   font-size: 14px;
-  
+  width: 100%; /* ocupar todo ancho del form */
+  box-sizing: border-box;
+  color: #fff;
 }
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
 /* Estilos para el texto de los campos de entrada */
 
 
 .boton {
-  padding: 10px;
-  background-color: #000000;
-  color: rgb(255, 255, 255);
   border: none;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
-  
+  border-radius: 30px; /* bordes redondeados */
+  padding: 12px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer; /* convertir en una manito */
+  box-shadow: 0 8px 15px rgba(37, 117, 252, 0.3);
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  color: rgb(219, 129, 25); /* la letra del boton*/
+  display: block;
+  margin: auto;
+}
+
+
+.boton:hover {
+  box-shadow: 0 15px 20px rgba(37, 117, 252, 0.5);
+  transform: translateY(-3px); /* el pique del Nahu */
+}
+.boton:active{
+  transform: translateY(-1px);
+  box-shadow: 0 7px 10px rgba(37, 117, 252, 0.2);  
 }
   
 /* Estilos para el botón de envío */
