@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: "Verdana", serif !important;
 }
 
 .jumbotron .display-4 {
@@ -32,8 +32,8 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background-color: #53c0fb;
+  background: url("../img/cover_back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -73,12 +73,12 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .site-header a {
   color: white;
-  transition: ease-in-out color .15s;
+  transition: ease-in-out color 0.15s;
 }
 
 .site-header .dropdown-menu a {
@@ -86,7 +86,7 @@ footer p {
 }
 
 .dropzone {
-  border: 2px dashed #0087F7;
+  border: 2px dashed #0087f7;
   border-radius: 5px;
   background: white;
 }
@@ -210,7 +210,7 @@ main {
   margin-bottom: 5px;
 }
 
-/* intento de prevenir que el label cambie de color */
+/* intento de prevenir que el label cambie de color 
 .campos input:-webkit-autofill + label,
 .campos input:-webkit-autofill:hover + label,
 .campos input:-webkit-autofill:focus + label,
@@ -218,6 +218,18 @@ main {
   -webkit-text-fill-color:inherit !important;
   color:#FF7700  !important;
   background-color: #FF7700 !important;
+}
+  */
+/* Sugerencia de Code para que el input no cambie de color al usar autocompletar
+La cuestion está en usar el webkit box shadow por un tema de que los navegadores ignoran muchos estilos directos y sólo permiten el truco del box-shadow para inputs autocompletados.
+ */
+.campos input:-webkit-autofill,
+.campos input:-webkit-autofill:hover,
+.campos input:-webkit-autofill:focus,
+.campos input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #FF7700 inset !important;
+  -webkit-text-fill-color: #000 !important; 
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 
@@ -281,5 +293,82 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+
+/*estilos para las tarjetas */
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  padding-top: 3rem;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.product-card {
+  width: calc(20% - 10px);
+  /*width: calc((100% - 4 * 20px) / 5);  /* El comentado de arriba muestra 4 en linea y 1 debajo */ 
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(223, 93, 7, 0.815);
+  transition: transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(223, 93, 7, 0.815);
+}
+
+.product-image {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction:column;
+}
+
+
+.product-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column; /* elementos en columna */
+  flex-grow: 1; /* que use el espacio disponible */
+  margin-top: 0;
+}
+
+.product-title {
+  color: #d8781d;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.product-descripcion {
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: auto;
+  color: #333;
+}
+
+.product-sales {
+  display: flex;
+  font-size: 14px;
+}
+
+.sales-label {
+  color: #666;
+}
+
+.product-price {
+  display: flex;
+  font-size: 20px;
+  color: #2a5ea5;
+  font-weight: bold;
+  padding-top: 12px;
+  justify-content: flex-end;
+  margin-top: auto;
 }
 
