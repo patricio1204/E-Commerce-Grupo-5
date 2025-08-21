@@ -1,5 +1,4 @@
-
-window.SessionManager = {
+SessionManager = {
     guardarSesion: function(userData) {
         localStorage.setItem('userSession', JSON.stringify(userData));
         localStorage.setItem('sessionTime', new Date().getTime());
@@ -16,17 +15,16 @@ window.SessionManager = {
     },
     
     redirigirSiNoHaySesion: function() {
-        if (!this.obtenerSesion()) {
+        if (!this.estaLogueado()) {
             window.location.href = 'login.html';
-            return true;
         }
-        return false;
     },
-    
+        
     estaLogueado: function() {
         return this.obtenerSesion() !== null;
     }
-            
+
+    
 };
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -34,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (btnIngresar) {
         btnIngresar.addEventListener('click', function() {
-            const usuario = document.querySelector('input[name="Usuario"]').value.trim();
-            const contrasena = document.querySelector('input[name="Contrasena"]').value.trim();
+            const usuario = document.getElementById('Usuauario').value.trim();
+            const contrasena = document.getElementById('Contraseña').value.trim();
             
             if (!usuario || !contrasena) {
                 alert('Por favor complete todos los campos requeridos');
