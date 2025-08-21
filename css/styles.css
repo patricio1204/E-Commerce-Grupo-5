@@ -315,6 +315,8 @@ a.custom-card:hover {
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(223, 93, 7, 0.815);
   transition: transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
@@ -327,6 +329,7 @@ a.custom-card:hover {
   display: flex;
   flex-direction:column;
 }
+
 
 .product-info {
   padding: 15px;
