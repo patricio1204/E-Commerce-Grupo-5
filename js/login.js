@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 return false;
             }
             
+            // Guardar la sesión del usuario
+            if (window.SessionManager) {
+                window.SessionManager.guardarSesion({
+                    username: usuario
+                });
+            }
+            
             window.location.href = 'index.html';
         });
     }
