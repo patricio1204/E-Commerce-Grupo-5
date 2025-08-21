@@ -1,3 +1,34 @@
+
+window.SessionManager = {
+    guardarSesion: function(userData) {
+        localStorage.setItem('userSession', JSON.stringify(userData));
+        localStorage.setItem('sessionTime', new Date().getTime());
+    },
+    
+    obtenerSesion: function() {
+        const session = localStorage.getItem('userSession');
+        return session ? JSON.parse(session) : null;
+    },
+    
+    cerrarSesion: function() {
+        localStorage.removeItem('userSession');
+        localStorage.removeItem('sessionTime');
+    },
+    
+    redirigirSiNoHaySesion: function() {
+        if (!this.obtenerSesion()) {
+            window.location.href = 'login.html';
+            return true;
+        }
+        return false;
+    },
+    
+    estaLogueado: function() {
+        return this.obtenerSesion() !== null;
+    }
+            
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     const btnIngresar = document.getElementById('btnIngresar');
     
@@ -12,19 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Guardar la sesión del usuario
-            if (window.SessionManager) {
-                window.SessionManager.guardarSesion({
-                    username: usuario
-                });
-            }
+            window.SessionManager.guardarSesion({
+                username: usuario
+            });
             
             window.location.href = 'index.html';
         });
     }
 });
-
-
-
 
 /* Aca una funcioncita para que el boton de Ingresar solo esté disponible luego de rellenar los campos*/
 document.addEventListener('DOMContentLoaded', function () {
