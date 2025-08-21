@@ -301,7 +301,7 @@ a.custom-card:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  max-width: 1000px;
+  max-width: 1200px;
   padding-top: 3rem;
   margin: 0 auto;
   justify-content: space-between;
@@ -309,6 +309,7 @@ a.custom-card:hover {
 
 .product-card {
   width: calc(20% - 10px);
+  /*width: calc((100% - 4 * 20px) / 5);  /* El comentado de arriba muestra 4 en linea y 1 debajo */ 
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
@@ -322,12 +323,17 @@ a.custom-card:hover {
 }
 
 .product-image {
-  width: 100%;
-  height: 130px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction:column;
 }
 
 .product-info {
   padding: 15px;
+  display: flex;
+  flex-direction: column; /* elementos en columna */
+  flex-grow: 1; /* que use el espacio disponible */
+  margin-top: 0;
 }
 
 .product-title {
@@ -340,14 +346,12 @@ a.custom-card:hover {
 .product-descripcion {
   font-size: 12px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: auto;
   color: #333;
 }
 
 .product-sales {
   display: flex;
-  align-items: center;
-  margin-top: 15px;
   font-size: 14px;
 }
 
@@ -362,5 +366,6 @@ a.custom-card:hover {
   font-weight: bold;
   padding-top: 12px;
   justify-content: flex-end;
+  margin-top: auto;
 }
 
