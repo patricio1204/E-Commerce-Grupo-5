@@ -39,3 +39,15 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+/* Codigo para que redireccione a Login o Index segun corresponda*/
+document.addEventListener('DOMContentLoaded', function() {
+    const session = localStorage.getItem('userSession'); //Obtiene los datos desde localstorage
+    if (session && window.location.pathname.includes(`login.html`)){ // Verifica si existe una sesión almacenada Y si la página actual es 'login.html'
+      window.location.href =`index.html`; //redirige a index
+    }
+    else if
+      (!session && !window.location.pathname.includes(`login.html`)){
+      window.location.href =`login.html`;  // Acá, si no estas logueado, te redirige a login por siempre hasta que te loguees
+    }
+});
