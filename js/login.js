@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const btnIngresar = document.getElementById('btnIngresar');
     if (btnIngresar) {
+
         btnIngresar.addEventListener('click', function(event) {
             event.preventDefault(); //previene que se envie el form con los valores default
 
@@ -21,4 +22,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
