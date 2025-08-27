@@ -40,6 +40,20 @@ let getJSONData = function(url){
     });
 }
 
+// Función para mostrar el nombre de usuario en la barra de navegación
+function mostrarNombreUsuario() {
+    const session = localStorage.getItem('userSession');
+    const usernameElement = document.getElementById('navbar-username');
+    
+    if (session && usernameElement) {
+        const userData = JSON.parse(session);
+        usernameElement.textContent = userData.username;
+        usernameElement.style.display = 'inline';
+    } else if (usernameElement) {
+        usernameElement.style.display = 'none';
+    }
+}
+
 /* Codigo para que redireccione a Login o Index segun corresponda*/
 document.addEventListener('DOMContentLoaded', function() {
     const session = localStorage.getItem('userSession'); //Obtiene los datos desde localstorage
@@ -50,4 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       (!session && !window.location.pathname.includes(`login.html`)){
       window.location.href =`login.html`;  // Acá, si no estas logueado, te redirige a login por siempre hasta que te loguees
     }
+    
+    // Mostrar nombre de usuario en la barra de navegación
+    mostrarNombreUsuario();
 });
