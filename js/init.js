@@ -42,29 +42,39 @@ let getJSONData = function(url){
 
 // Función para mostrar el nombre de usuario en la barra de navegación
 function mostrarNombreUsuario() {
+    // Obtener datos de sesión del almacenamiento local
     const session = localStorage.getItem('userSession');
-    const usernameElement = document.getElementById('navbar-username');
-    
+    // Obtener elemento donde mostrar el nombre de usuario
+    const usernameElement = document.getElementById('navusername');
+    // Obtener enlace de inicio de sesión
+    const loginLink = document.querySelector('.nav-link[href="login.html"]');
+  
+    // Si hay sesión y elemento de usuario existe
     if (session && usernameElement) {
+        // Parsear datos de usuario y mostrar nombre
         const userData = JSON.parse(session);
-        usernameElement.textContent = userData.username;
-        usernameElement.style.display = 'inline';
+        usernameElement.textContent = userData.usuario;
+        usernameElement.style.display = '';
+        // remover enlace de login si existe
+        if (loginLink) {
+            loginLink.remove();
+        }
     } else if (usernameElement) {
-        usernameElement.style.display = 'none';
+        // Si no hay sesión, remueve nombre de usuario
+        usernameElement.remove(); 
     }
 }
 
-/* Codigo para que redireccione a Login o Index segun corresponda*/
+/* Código para que redireccione a Login o Index según corresponda */
 document.addEventListener('DOMContentLoaded', function() {
-    const session = localStorage.getItem('userSession'); //Obtiene los datos desde localstorage
-    if (session && window.location.pathname.includes(`login.html`)){ // Verifica si existe una sesión almacenada Y si la página actual es 'login.html'
-      window.location.href =`index.html`; //redirige a index
+    const session = localStorage.getItem('userSession');
+    if (session && window.location.pathname.includes(`login.html`)){
+      window.location.href =`index.html`;
     }
     else if
       (!session && !window.location.pathname.includes(`login.html`)){
-      window.location.href =`login.html`;  // Acá, si no estas logueado, te redirige a login por siempre hasta que te loguees
+      window.location.href =`login.html`;
     }
     
-    // Mostrar nombre de usuario en la barra de navegación
     mostrarNombreUsuario();
 });
