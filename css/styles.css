@@ -13,6 +13,16 @@ nav a {
   text-decoration: none;
 }
 
+#navusername {
+  display: flex;
+  padding: 0.5rem 1rem;
+  line-height: 1.5;
+  vertical-align: middle;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: normal;
+  margin-right: 2.5rem;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -300,6 +310,8 @@ a.custom-card:hover {
 
 
 /*estilos para las tarjetas */
+
+
 .products-container {
   display: flex;
   flex-wrap: wrap;
