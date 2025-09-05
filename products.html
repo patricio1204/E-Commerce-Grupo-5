@@ -37,31 +37,58 @@
     </div>
   </nav>
   <main class="pb-5 container">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/products.js"></script>
-</body>
 
-</html>
+      <!-- Controles de filtro y orden -->
+<div class="row mb-3 align-items-center">
+    <div class="col-auto">
+        <!-- Botones de orden -->
+        <button id="sortPriceAsc" class="btn btn-outline-secondary" title="Precio Ascendente">
+            <i class="fa fa-sort-amount-asc"></i>
+        </button>
+        <button id="sortPriceDesc" class="btn btn-outline-secondary" title="Precio Descendente">
+            <i class="fa fa-sort-amount-desc"></i>
+        </button>
+        <button id="sortSoldDesc" class="btn btn-outline-secondary" title="Más vendidos">
+            <i class="fa fa-trophy"></i>
+        </button>
+    </div>
+
+    <div class="col-auto">
+        <label class="form-label">Precio</label>
+    </div>
+
+    <div class="col-auto">
+        <input type="number" id="minPrice" class="form-control" placeholder="Min" style="width:100px">
+    </div>
+
+    <div class="col-auto">
+        <input type="number" id="maxPrice" class="form-control" placeholder="Max" style="width:100px">
+    </div>
+
+    <div class="col-auto">
+        <button id="applyFilters" class="btn btn-primary">Filtrar</button>
+    </div>
+
+    <div class="col-auto">
+        <a href="#" id="clearFilters">Limpiar</a>
+    </div>
+</div>
+
+
+  <!-- Agregaremos los controles para que el usuario pueda ingresar un rango de precio y seleccionar el criterio de ordenación. 
+<div class="filters">
+  <label for="min-price">Precio Mínimo:</label>
+  <input type="number" id="min-price" placeholder="Precio mínimo">
+
+  <label for="max-price">Precio Máximo:</label>
+  <input type="number" id="max-price" placeholder="Precio máximo">
+
+  <label for="sort-by">Ordenar por:</label>
+  <select id="sort-by">
+    <option value="price-asc">Precio: Bajo a Alto</option>
+    <option value="price-desc">Precio: Alto a Bajo</option>
+    <option value="relevance-desc">Relevancia: Alta a Baja</option>
+  </select>
+
+  <button id="apply-filters">Filtrar</button>
+</div> -->

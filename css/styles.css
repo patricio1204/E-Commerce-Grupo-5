@@ -188,3 +188,20 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+New
+/* Espacio entre botones y inputs */
+#sortPriceAsc, #sortPriceDesc, #sortSoldDesc {
+    margin-right: 5px;
+}
+
+/* Inputs de precio más pequeños */
+#minPrice, #maxPrice {
+    display: inline-block;
+}
+
+/* Alineación vertical */
+.row.align-items-center {
+    align-items: center;
+}
+
