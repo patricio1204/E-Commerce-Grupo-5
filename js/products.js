@@ -70,4 +70,85 @@ fetch(url)
   });
 
 
+// desde acá
+const sortIcons = document.querySelectorAll(".sort-icon");
+sortIcons.forEach(icon => {
+  icon.addEventListener("click", () => {
+    const sortType = icon.dataset.sort; // p.ej. "price-asc", "price-desc", "sold-desc"
+    applySortAndRender(products, sortType);
+  });
+});
 
+const minInput = document.getElementById("min-price");
+const maxInput = document.getElementById("max-price");
+const filterBtn = document.getElementById("filter-btn");
+const clearBtn = document.getElementById("clear-btn");
+const sortSelect = document.getElementById("sort-select");
+
+let products = []; // Aquí guardaremos los productos obtenidos
+
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    products = data.products;
+    renderProducts(products);
+  })
+  .catch(error => {
+    console.error("Error al obtener los productos:", error);
+    container.innerHTML = "<p>Error al cargar los productos.</p>";
+  });
+
+function renderProducts(list) {
+  container.innerHTML = "";
+  list.forEach(prod => {
+    const card = document.createElement("div");
+    card.classList.add("product-card");
+    card.dataset.price = prod.cost;
+    card.dataset.sold = prod.soldCount;
+    card.innerHTML = `
+      <img src="${prod.image}" alt="${prod.name}" class="product-image">
+      <div class="product-info">
+        <h3 class="product-title">${prod.name}</h3>
+        <p class="product-descripcion">${prod.description}</p>
+        <div class="product-sales"><span class="sales-label">Vendidos: ${prod.soldCount}</span></div>
+        <div class="product-price">$${prod.cost}</div>
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+filterBtn.addEventListener("click", () => {
+  const min = parseFloat(minInput.value);
+  const max = parseFloat(maxInput.value);
+  const filtered = products.filter(p =>
+    (isNaN(min) || p.cost >= min) &&
+    (isNaN(max) || p.cost <= max)
+  );
+  applySortAndRender(filtered);
+});
+
+clearBtn.addEventListener("click", () => {
+  minInput.value = "";
+  maxInput.value = "";
+  sortSelect.value = "";
+  renderProducts(products);
+});
+
+sortSelect.addEventListener("change", () => {
+  applySortAndRender(products);
+});
+
+function applySortAndRender(list) {
+  let sorted = [...list];
+  let val = sortSelect.value;
+  if (val === "price-asc") {
+    sorted.sort((a, b) => a.cost - b.cost);
+  } else if (val === "price-desc") {
+    sorted.sort((a, b) => b.cost - a.cost);
+  } else if (val === "sold-desc") {
+    sorted.sort((a, b) => b.soldCount - a.soldCount);
+  }
+  renderProducts(sorted);
+}
+
+// hasta acá
