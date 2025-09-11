@@ -197,6 +197,7 @@ main {
   justify-content: center;
   height: 100%;
   border: 2px solid #FF7700; /* Cambia el color del borde */
+  border: 2px solid #ff7700; /* Cambia el color del borde */
   border-radius: 15px;
   padding: 30px;
   background-color: rgb(255, 255, 255);
@@ -239,9 +240,10 @@ La cuestion está en usar el webkit box shadow por un tema de que los navegadore
 .campos input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px #FF7700 inset !important;
   -webkit-text-fill-color: #000 !important; 
+  -webkit-box-shadow: 0 0 0px 1000px #ff7700 inset !important;
+  -webkit-text-fill-color: #000 !important;
   transition: background-color 5000s ease-in-out 0s;
 }
-
 
 ::-webkit-input-placeholder {
   color: black;
@@ -249,21 +251,21 @@ La cuestion está en usar el webkit box shadow por un tema de que los navegadore
 
 input[type="text"],
 input[type="password"] {
-  
   padding: 10px;
   border: none;
   background-color: #FF7700;
+  background-color: #ff7700;
   border-radius: 12px;
   width: 100%;
   font-size: 14px;
   box-sizing: border-box;
   color: black;
-  
 }
 /* Estilos para el texto de los campos de entrada */
 
 .boton {
   background-color: #FF7700;
+  background-color: #ff7700;
   border: none;
   padding: 10px 20px;
   border-radius: 30px;
@@ -287,6 +289,7 @@ input[type="password"] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease; /*demora de transición de color de fondo*/
   transform:translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .boton:active {
@@ -322,6 +325,7 @@ a.custom-card:hover {
 .product-card {
   width: calc(20% - 10px);
   /*width: calc((100% - 4 * 20px) / 5);  /* El comentado de arriba muestra 4 en linea y 1 debajo */ 
+  /*width: calc((100% - 4 * 20px) / 5);  /* El comentado de arriba muestra 4 en linea y 1 debajo */
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
@@ -340,6 +344,7 @@ a.custom-card:hover {
   flex: 1 1 auto;
   display: flex;
   flex-direction:column;
+  flex-direction: column;
 }
 
 
@@ -384,3 +389,73 @@ a.custom-card:hover {
   margin-top: auto;
 }
 
+/* Tableta en Modo Vertical: 768 x 1024 px */
+@media (max-width: 768px) {
+  .products-container {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .product-card {
+    width: calc(33.333% - 15px);
+    margin-bottom: 10px;
+  }
+
+  .product-title {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .navbar-nav {
+    flex-direction: row; /*crea una fila con los elementos */
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0 10px;
+  }
+}
+
+/* Smartphone Pequeño (Ej. iPhone SE): 320 x 568 px */
+@media (max-width: 320px) {
+  .products-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .product-title {
+    font-size: 13px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 5px 0;
+  }
+
+  footer .container {
+    text-align: center;
+  }
+
+  .float-end {
+    float: none !important;
+    margin-bottom: 10px;
+  }
+}

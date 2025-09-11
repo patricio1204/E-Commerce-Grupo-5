@@ -1,6 +1,10 @@
+let catID = localStorage.getItem("catID"); // 
+
 // URL de la API que contiene los productos de la categoría 101.
 // Aquí es donde vamos a hacer la solicitud para obtener los datos en formato JSON.
-const url = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+let url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;  //Mod: desde el $ en adelnate logramos que que el ID de la cat sea dinàmico
+
+
 
 // Seleccionamos el elemento del DOM (HTML) donde se insertarán todas las tarjetas.
 // En este caso, es un <div> con id="products-container".
@@ -58,3 +62,6 @@ fetch(url)
     // También mostramos un mensaje de error en la página para informar al usuario.
     container.innerHTML = "<p>Error al cargar los productos.</p>";
   });
+
+
+
