@@ -196,7 +196,6 @@ main {
   align-items: center;
   justify-content: center;
   height: 100%;
-  border: 2px solid #FF7700; /* Cambia el color del borde */
   border: 2px solid #ff7700; /* Cambia el color del borde */
   border-radius: 15px;
   padding: 30px;
@@ -509,7 +508,7 @@ a.custom-card:hover {
 }
 
 #filter-btn {
-  background-color: #e0f7fa;
+  background-color: #ededed;
   border: none;
   color: #000;
   padding: 6px 12px;
