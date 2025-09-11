@@ -134,7 +134,7 @@ sortSelect.addEventListener("change", () => {
 
 function applySortAndRender(list) {
   let sorted = [...list];
-  let val = sortSelect.value;
+ let val = sortSelect.value;
   if (val === "price-asc") {
     sorted.sort((a, b) => a.cost - b.cost);
   } else if (val === "price-desc") {
