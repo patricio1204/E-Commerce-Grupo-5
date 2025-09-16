@@ -54,6 +54,34 @@
     </div>
   </nav>
     <main class="pb-5 container">
+        <!--Nuevo-->
+      <div class="controls-wrapper">
+  <div class="price-filter">
+<div class="sort-options">
+    <label>Ordenar por:</label>
+    <select id="sort-select">
+      <option value="">--Seleccione--</option>
+      <option value="price-asc">Precio (Asc)</option>
+      <option value="price-desc">Precio (Desc)</option>
+      <option value="sold-desc">Relevancia (Vendidos ↓)</option>
+    </select>
+  </div>
+
+    <label>Precio</label>
+    <input type="number" id="min-price" placeholder="Mín" />
+    <input type="number" id="max-price" placeholder="Máx" />
+    <button id="filter-btn">Filtrar</button>
+    <button id="clear-btn">Limpiar</button>
+  </div>
+  
+  
+</div>
+<!-- Hasta aca -->
+    
+<div id="products-container" class="products-container">
+  <!-- Tarjetas de productos aquí -->
+</div>
+
       <!-- Contenedor donde se insertarán las tarjetas -->
       <div id="products-container" class="products-container"></div>
     </main>
