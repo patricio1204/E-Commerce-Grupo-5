@@ -45,13 +45,13 @@ fetch(url)
         </div>
       `;
 
-      // Agregar event listener para seleccionar el producto
-      card.addEventListener('click', () => {
-        // Guardar el ID del producto en localStorage
-        localStorage.setItem('prodID', producto.id);
-        // Redirigir a la página de información del producto
-        window.location.href = 'product-info.html';
-      });
+// Agregar event listener para seleccionar el producto
+card.addEventListener('click', () => {
+  // Guardar el ID del producto en localStorage
+  localStorage.setItem('prodID', producto.id);
+  // Redirigir a la página de información del producto
+  window.location.href = 'product-info.html';
+});
 
       // Finalmente, insertamos la tarjeta recién creada dentro del contenedor principal (products-container).
       // Esto hace que la tarjeta aparezca en la página.
@@ -114,6 +114,13 @@ function renderProducts(list) {
         <div class="product-sales"><span class="sales-label">Vendidos: ${prod.soldCount}</span></div>
         <div class="product-price">$${prod.cost}</div>
       </div>`;
+    // Agregar event listener para seleccionar el producto
+    card.addEventListener('click', () => {
+      // Guardar el ID del producto en localStorage
+      localStorage.setItem('prodID', prod.id);
+      // Redirigir a la página de información del producto
+      window.location.href = 'product-info.html';
+    });
     container.appendChild(card);
   });
 }
