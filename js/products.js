@@ -70,6 +70,7 @@ fetch(url)
   });
 
 
+
 // desde acá
 const sortIcons = document.querySelectorAll(".sort-icon");
 sortIcons.forEach(icon => {
@@ -150,5 +151,6 @@ function applySortAndRender(list) {
   }
   renderProducts(sorted);
 }
+
 
 // hasta acá
