@@ -1,10 +1,8 @@
-let catID = localStorage.getItem("catID"); // 
+let catID = localStorage.getItem("catID"); //
 
-// URL de la API que contiene los productos de la categoría 101.
+// URL de la API que contiene los productos de la categoría.
 // Aquí es donde vamos a hacer la solicitud para obtener los datos en formato JSON.
-let url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;  //Mod: desde el $ en adelnate logramos que que el ID de la cat sea dinàmico
-
-
+let url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;  //Mod: desde el $ en adelante logramos que el ID de la cat sea dinámico
 
 // Seleccionamos el elemento del DOM (HTML) donde se insertarán todas las tarjetas.
 // En este caso, es un <div> con id="products-container".
@@ -47,6 +45,14 @@ fetch(url)
         </div>
       `;
 
+      // Agregar event listener para seleccionar el producto
+      card.addEventListener('click', () => {
+        // Guardar el ID del producto en localStorage
+        localStorage.setItem('prodID', producto.id);
+        // Redirigir a la página de información del producto
+        window.location.href = 'product-info.html';
+      });
+
       // Finalmente, insertamos la tarjeta recién creada dentro del contenedor principal (products-container).
       // Esto hace que la tarjeta aparezca en la página.
       container.appendChild(card);
@@ -62,6 +68,7 @@ fetch(url)
     // También mostramos un mensaje de error en la página para informar al usuario.
     container.innerHTML = "<p>Error al cargar los productos.</p>";
   });
+
 
 
 // desde acá
@@ -145,5 +152,6 @@ function applySortAndRender(list) {
   }
   renderProducts(sorted); // finalmente muestra los productos ordenados
 }
+
 
 // hasta acá

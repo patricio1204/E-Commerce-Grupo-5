@@ -189,6 +189,36 @@ main {
   min-height: calc(100vh - 210px);
 }
 
+.product-detail.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.product-detail img {
+  border-radius: 15px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.product-detail .col-md-6:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-detail p.text-muted {
+  border: 2px solid #FF7700;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #fff8f0;
+  box-shadow: 0 2px 5px rgba(223, 93, 7, 0.3);
+}
 
 .contenedor {
   display: flex;
@@ -459,7 +489,7 @@ a.custom-card:hover {
   }
 }
 
- /* Nuevo  */
+
 .controls-wrapper {
   display: flex; /* convierte el contenedor en un flexbox contenedor, lo que permite alinear hijos fácilmente */
   align-items: center; /* alinea los items hijos verticalmente al centro dentro del contenedor flex */
@@ -523,3 +553,4 @@ a.custom-card:hover {
   cursor: pointer; /* cursor puntero al pasar sobre él */
   padding: 0; /* sin relleno interno */
 }
+
