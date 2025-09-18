@@ -1,40 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     const btnIngresar = document.getElementById('btnIngresar');
-    
     if (btnIngresar) {
-        btnIngresar.addEventListener('click', function() {
-            const usuario = document.querySelector('input[name="Usuario"]').value.trim();
-            const contrasena = document.querySelector('input[name="Contrasena"]').value.trim();
-            
-            if (!usuario || !contrasena) {
-                alert('Por favor complete todos los campos requeridos');
+
+        btnIngresar.addEventListener('click', function(event) {
+            event.preventDefault(); //previene que se envie el form con los valores default
+
+            const usuario = document.querySelector('input[id="Usuario"]').value.trim(); //obtencion de los valores de input, con el trim pa eliminar espacios en blanco
+            const contrasena = document.querySelector('input[id="Contrasena"]').value.trim();
+
+            if (!usuario || !contrasena) { //verificar campos vacíos
+                alert('Por favor complete todos los campos requeridos'); //la politziaaa
                 return false;
             }
-            
-            window.location.href = 'index.html';
+
+            const userData = { usuario, contrasena }; //creamos nuevo objeto para meter los datos del usuario
+            localStorage.setItem('userSession', JSON.stringify(userData)); // se guarda "userData" en el almacenamiento local como un JSON que se llama'userSession'
+            localStorage.setItem('sessionTime', Date.now());
+
+            window.location.href = 'index.html'; //Redirige a Index.html
         });
     }
-});
-
-
-
-
-/* Aca una funcioncita para que el boton de Ingresar solo esté disponible luego de rellenar los campos*/
-document.addEventListener('DOMContentLoaded', function () {
-  const btnIngresar = document.getElementById('btnIngresar');
-  const inputs = document.querySelectorAll('input[name="Usuario"], input[name="Contrasena"]');
-
-  function verificarCampos() {
-    // Verificar que todos los campos tengan texto no vacío
-    const todosCompletos = Array.from(inputs).every(input => input.value.trim() !== '');
-    btnIngresar.disabled = !todosCompletos;
-  }
-
-  // Inicializar botón deshabilitado
-  btnIngresar.disabled = true;
-
-  // Agregar evento input a cada campo para verificar cambios
-  inputs.forEach(input => {
-    input.addEventListener('input', verificarCampos);
-  });
 });

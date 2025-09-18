@@ -39,3 +39,42 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+// Función para mostrar el nombre de usuario en la barra de navegación
+function mostrarNombreUsuario() {
+    // Obtener datos de sesión del almacenamiento local
+    const session = localStorage.getItem('userSession');
+    // Obtener elemento donde mostrar el nombre de usuario
+    const usernameElement = document.getElementById('navusername');
+    // Obtener enlace de inicio de sesión
+    const loginLink = document.querySelector('.nav-link[href="login.html"]');
+  
+    // Si hay sesión y elemento de usuario existe
+    if (session && usernameElement) {
+        // Parsear datos de usuario y mostrar nombre
+        const userData = JSON.parse(session);
+        usernameElement.textContent = userData.usuario;
+        usernameElement.style.display = '';
+        // remover enlace de login si existe
+        if (loginLink) {
+            loginLink.remove();
+        }
+    } else if (usernameElement) {
+        // Si no hay sesión, remueve nombre de usuario
+        usernameElement.remove(); 
+    }
+}
+
+/* Código para que redireccione a Login o Index según corresponda */
+document.addEventListener('DOMContentLoaded', function() {
+    const session = localStorage.getItem('userSession');
+    if (session && window.location.pathname.includes(`login.html`)){
+      window.location.href =`index.html`;
+    }
+    else if
+      (!session && !window.location.pathname.includes(`login.html`)){
+      window.location.href =`login.html`;
+    }
+    
+    mostrarNombreUsuario();
+});

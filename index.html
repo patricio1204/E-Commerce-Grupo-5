@@ -31,7 +31,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="login.html">Login</a>
-          </li>
+  <li class="nav-item">
+    <a id="navusername" class="nav-link"></a>
+  </li>
         </ul>
       </div>
     </div>
@@ -89,6 +91,12 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/init.js"></script>
+  <script>
+    // Verificar sesión al cargar la página
+    if (window.SessionManager) {
+       window.SessionManager.redirigirSiNoHaySesion();
+    }
+  </script>
 </body>
 
 </html>

@@ -34,7 +34,7 @@ function sortCategories(criteria, array){
 
     return result;
 }
-
+//Aqui se guarda el Id de la categorìa seleccionada
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"

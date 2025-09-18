@@ -13,6 +13,16 @@ nav a {
   text-decoration: none;
 }
 
+#navusername {
+  display: flex;
+  padding: 0.5rem 1rem;
+  line-height: 1.5;
+  vertical-align: middle;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: normal;
+  margin-right: 2.5rem;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -179,6 +189,36 @@ main {
   min-height: calc(100vh - 210px);
 }
 
+.product-detail.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.product-detail img {
+  border-radius: 15px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.product-detail .col-md-6:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-detail p.text-muted {
+  border: 2px solid #FF7700;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #fff8f0;
+  box-shadow: 0 2px 5px rgba(223, 93, 7, 0.3);
+}
 
 .contenedor {
   display: flex;
@@ -186,7 +226,7 @@ main {
   align-items: center;
   justify-content: center;
   height: 100%;
-  border: 2px solid #FF7700; /* Cambia el color del borde */
+  border: 2px solid #ff7700; /* Cambia el color del borde */
   border-radius: 15px;
   padding: 30px;
   background-color: rgb(255, 255, 255);
@@ -229,9 +269,10 @@ La cuestion está en usar el webkit box shadow por un tema de que los navegadore
 .campos input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px #FF7700 inset !important;
   -webkit-text-fill-color: #000 !important; 
+  -webkit-box-shadow: 0 0 0px 1000px #ff7700 inset !important;
+  -webkit-text-fill-color: #000 !important;
   transition: background-color 5000s ease-in-out 0s;
 }
-
 
 ::-webkit-input-placeholder {
   color: black;
@@ -239,21 +280,21 @@ La cuestion está en usar el webkit box shadow por un tema de que los navegadore
 
 input[type="text"],
 input[type="password"] {
-  
   padding: 10px;
   border: none;
   background-color: #FF7700;
+  background-color: #ff7700;
   border-radius: 12px;
   width: 100%;
   font-size: 14px;
   box-sizing: border-box;
   color: black;
-  
 }
 /* Estilos para el texto de los campos de entrada */
 
 .boton {
   background-color: #FF7700;
+  background-color: #ff7700;
   border: none;
   padding: 10px 20px;
   border-radius: 30px;
@@ -277,6 +318,7 @@ input[type="password"] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease; /*demora de transición de color de fondo*/
   transform:translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .boton:active {
@@ -297,6 +339,8 @@ a.custom-card:hover {
 
 
 /*estilos para las tarjetas */
+
+
 .products-container {
   display: flex;
   flex-wrap: wrap;
@@ -310,6 +354,7 @@ a.custom-card:hover {
 .product-card {
   width: calc(20% - 10px);
   /*width: calc((100% - 4 * 20px) / 5);  /* El comentado de arriba muestra 4 en linea y 1 debajo */ 
+  /*width: calc((100% - 4 * 20px) / 5);  /* El comentado de arriba muestra 4 en linea y 1 debajo */
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
@@ -328,6 +373,7 @@ a.custom-card:hover {
   flex: 1 1 auto;
   display: flex;
   flex-direction:column;
+  flex-direction: column;
 }
 
 
@@ -370,5 +416,141 @@ a.custom-card:hover {
   padding-top: 12px;
   justify-content: flex-end;
   margin-top: auto;
+}
+
+/* Tableta en Modo Vertical: 768 x 1024 px */
+@media (max-width: 768px) {
+  .products-container {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .product-card {
+    width: calc(33.333% - 15px);
+    margin-bottom: 10px;
+  }
+
+  .product-title {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .navbar-nav {
+    flex-direction: row; /*crea una fila con los elementos */
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0 10px;
+  }
+}
+
+/* Smartphone Pequeño (Ej. iPhone SE): 320 x 568 px */
+@media (max-width: 320px) {
+  .products-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .product-title {
+    font-size: 13px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 5px 0;
+  }
+
+  footer .container {
+    text-align: center;
+  }
+
+  .float-end {
+    float: none !important;
+    margin-bottom: 10px;
+  }
+}
+
+
+.controls-wrapper {
+  display: flex; /* convierte el contenedor en un flexbox contenedor, lo que permite alinear hijos fácilmente */
+  align-items: center; /* alinea los items hijos verticalmente al centro dentro del contenedor flex */
+  gap: 16px; /* espacio uniforme de 16px entre cada elemento hijo */
+  margin: 16px 0; /* margen arriba y abajo de 16px, sin margen horizontal */
+  justify-content: flex-end; /* alinea todos los elementos hijos al extremo derecho dentro del contenedor (eje principal) */
+}
+
+/* Botón "Limpiar" */
+#clear-btn {
+  background-color: transparent; /* fondo transparente, nada visible como color de fondo */
+  border: none; /* sin borde visible */
+  color: blue; /* texto de color azul */
+  text-decoration: underline; /* subrayado en el texto — da efecto de link normalmente */
+  cursor: pointer; /* cambia el cursor al pasar por encima, indicando que se puede clicar */
+  padding: 0; /* sin relleno interno */
+}
+
+/* Botón "Filtrar" */
+#filter-btn {
+  background-color: #e9e9e9; /* color de fondo gris claro */
+  border: none; /* sin borde visible */
+  color: #000; /* texto de color negro */
+  cursor: pointer; /* cursor cambia para indicar clicable */
+  padding: 6px 12px; /* espacio interno: 6px arriba/abajo, 12px izquierda/derecha */
+  border-radius: 4px; /* bordes redondeados con radio de 4px */
+}
+
+.controls-wrapper { 
+  display: flex; /* nuevamente define flexbox para .controls-wrapper */
+  align-items: center; /* alinea hijos verticalmente al centro */
+  gap: 12px; /* diferencia de antes: ahora espacio de 12px entre hijos */
+  margin: 16px 0; /* mismo margen arriba/abajo de 16px */
+  justify-content: flex-end; /* alineados al extremo derecho */
+}
+
+.sort-icons .sort-icon {
+  cursor: pointer; /* cursor tipo puntero al pasar sobre ellos, sugiriendo que son clicables */
+  font-size: 1.2em;  /* tamaño relativo de fuente: 1.2 veces el tamaño base, para agrandar un poco los iconos de orden */
+  margin-right: 8px; /* margen derecho de 8px para separación entre iconos o entre un icono y otro elemento */
+}
+
+.price-filter button {
+  /* mantener estilos previos: Filtrar: fondo celeste claro, Limpiar: azul subrayado sin fondo */
+  /* Esta regla es un comentario de intención: indica que los dos botones deben conservar los estilos que ya tienen arriba */
+}
+
+#filter-btn {
+  background-color: #ededed; /* nuevo color de fondo ligeramente distinto al anterior gris claro (#e9e9e9) */
+  border: none; /* sin borde */
+  color: #000; /* texto negro */
+  padding: 6px 12px; /* mismo relleno que antes */
+  border-radius: 4px; /* mismo redondeo de bordes */
+}
+
+#clear-btn {
+  background-color: transparent; /* fondo transparente */
+  border: none; /* sin borde */
+  color: blue; /* texto azul */
+  text-decoration: underline; /* subrayado */
+  cursor: pointer; /* cursor puntero al pasar sobre él */
+  padding: 0; /* sin relleno interno */
 }
 
