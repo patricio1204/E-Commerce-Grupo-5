@@ -85,6 +85,8 @@ const maxInput = document.getElementById("max-price"); // input para precio máx
 const filterBtn = document.getElementById("filter-btn"); // botón que aplica filtro
 const clearBtn = document.getElementById("clear-btn"); // botón que limpia filtros
 const sortSelect = document.getElementById("sort-select"); // select de criterio de orden
+const searchInput = document.getElementById("search-input"); // input del buscador
+
 
 let products = []; // Aquí guardaremos los productos obtenidos
 
@@ -166,3 +168,12 @@ function applySortAndRender(list) {
 
 
 // hasta acá
+
+searchInput.addEventListener("input", () => {
+    const searchText = searchInput.value.toLowerCase();
+    const filteredProducts = products.filter(prod => 
+        prod.name.toLowerCase().includes(searchText) || // busca en el nombre
+        prod.description.toLowerCase().includes(searchText) // busca en la descripción
+    );
+    renderProducts(filteredProducts);
+});
