@@ -169,6 +169,8 @@ function applySortAndRender(list) {
 
 // hasta acá
 
+
+//Desafiate - Aldana
 searchInput.addEventListener("input", () => {
     const searchText = searchInput.value.toLowerCase();
     const filteredProducts = products.filter(prod => 

@@ -341,20 +341,23 @@ a.custom-card:hover {
 /*estilos para las tarjetas */
 
 
-.products-container {
+/* .products-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   max-width: 1200px;
   padding-top: 3rem;
   margin: 0 auto;
-  justify-content: space-between;
-}
+ } */
+
+ .products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+ }
 
 .product-card {
-  width: calc(20% - 10px);
-  /*width: calc((100% - 4 * 20px) / 5);  /* El comentado de arriba muestra 4 en linea y 1 debajo */ 
-  /*width: calc((100% - 4 * 20px) / 5);  /* El comentado de arriba muestra 4 en linea y 1 debajo */
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
@@ -426,7 +429,6 @@ a.custom-card:hover {
   }
 
   .product-card {
-    width: calc(33.333% - 15px);
     margin-bottom: 10px;
   }
 
@@ -554,3 +556,187 @@ a.custom-card:hover {
   padding: 0; /* sin relleno interno */
 }
 
+/* Nuevos estilos para Filtros: */
+
+.modern-controls {
+  max-width: 600px;
+  margin: 20px auto;
+  background: #f8f9fa;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.sort-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-options {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 180px;
+}
+
+.sort-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.sort-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.price-filter {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2 1 300px;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-label {
+  font-weight: 600;
+  margin-right: 12px;
+  font-size: 0.9rem;
+  flex-basis: 100%;
+}
+
+.price-inputs {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.price-input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.price-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 9px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  color: #6c757d;
+  border: 2px solid #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+
+@media (max-width: 480px) {
+  .sort-filter-group {
+    flex-direction: column; /* Apilar verticalmente todos los controles */
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .sort-options,
+  .price-filter {
+    flex: 1 1 100%; /* Ocupan todo el ancho disponible */
+  }
+
+  .price-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .price-inputs {
+    flex-direction: column; /* Inputs uno sobre otro */
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .price-input {
+    width: 100%; /* Inputs toman todo el ancho */
+  }
+
+  .filter-buttons {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn {
+    flex: 1 1 45%; /* Botones en dos columnas */
+  }
+}
+
+/* Media query intermedia para tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .sort-filter-group {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .sort-options,
+  .price-filter {
+    flex: 1 1 48%; /* Mitad de ancho para cada grupo */
+  }
+
+  .price-filter {
+    flex-direction: column;
+  }
+
+  .price-inputs {
+    flex-direction: row;
+  }
+
+  .price-input {
+    width: auto;
+  }
+
+  .filter-buttons {
+    justify-content: flex-start;
+  }
+}
