@@ -41,6 +41,45 @@ if (!prodID) {
       // Insertar el HTML generado en el contenedor principal de la página
       document.querySelector('main .container').innerHTML = html;
 
+
+      // Entrega 4 - Lucia: Mostrar prods relacionados:
+let relatedHTML = `
+  <div class="row mt-5">
+    <div class="col-12">
+      <h2 class="mb-4 text-center fw-semibold text-primary border-bottom border-3 border-primary pb-2">
+        Productos relacionados
+      </h2>
+      <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center" id="related-products">
+        ${product.relatedProducts.map(related => `
+          <div class="col">
+            <div class="card h-100 shadow-sm rounded-4 border-0 product-related-card" style="cursor: pointer;" data-prod-id="${related.id}">
+              <img src="${related.image}" class="card-img-top rounded-top-4" alt="${related.name}" style="object-fit: cover; height: 150px;">
+              <div class="card-body text-center px-2">
+                <p class="card-text text-truncate fw-semibold text-primary mb-0" title="${related.name}">${related.name}</p>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </div>
+`;
+
+// Insertar productos relacionados **abajo, después** del bloque product-detail
+document.querySelector('main .container').insertAdjacentHTML('beforeend', relatedHTML);
+
+// Agregar evento click para cambiar el producto mostrado al pulsar relacionado
+document.querySelectorAll('#related-products .product-related-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const newProdID = card.getAttribute('data-prod-id');
+    localStorage.setItem('prodID', newProdID);
+    location.reload();
+  });
+});
+
+
+      //E4 Lu hasta aqui
+
       // Ahora obtener y mostrar las calificaciones
       let urlComentarios = PRODUCT_INFO_COMMENTS_URL + prodID + EXT_TYPE;
       getJSONData(urlComentarios).then(resultComentarios => {
