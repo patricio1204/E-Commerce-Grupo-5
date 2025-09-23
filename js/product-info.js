@@ -47,19 +47,28 @@ if (!prodID) {
         if (resultComentarios.status === 'ok') {
           let comentarios = resultComentarios.data;
           let seccionCalificaciones = `
-            <div class="row mt-4">
+            <div class="row mt-5">
               <div class="col-12">
-                <h2>Calificaciones de Usuarios</h2>
+                <h2 class="mb-4 text-center" style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">Calificaciones de Usuarios</h2>
                 ${comentarios.length > 0 ? comentarios.map(comentario => `
-                  <div class="card mb-3">
-                    <div class="card-body">
-                      <h5 class="card-title">${comentario.user}</h5>
-                      <p class="card-text">${comentario.description}</p>
-                      <p class="card-text"><small class="text-muted">Fecha: ${new Date(comentario.dateTime).toLocaleDateString('es-ES')}</small></p>
-                      <p class="card-text"><strong>Calificación: ${comentario.score}/5</strong></p>
+                  <div class="card mb-4 border-0 shadow" style="border-radius: 15px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                    <div class="card-body p-4">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <h5 class="card-title" style="color: #007bff; font-weight: bold; margin-bottom: 15px;">${comentario.user}</h5>
+                          <p class="card-text" style="font-size: 1.1em; line-height: 1.6; color: #495057;">${comentario.description}</p>
+                          <p class="card-text"><small class="text-muted" style="font-style: italic;">Fecha: ${new Date(comentario.dateTime).toLocaleDateString('es-ES')}</small></p>
+                        </div>
+                        <div class="col-md-4 text-end d-flex flex-column justify-content-center align-items-end">
+                          <div class="rating-display mb-2" style="font-size: 2em; font-weight: bold; color: #ffc107; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+                            ${comentario.score}
+                          </div>
+                          <small class="text-muted" style="font-size: 0.9em;">/ 5</small>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                `).join('') : '<p>No hay calificaciones disponibles para este producto.</p>'}
+                `).join('') : '<div class="alert alert-info text-center" role="alert" style="border-radius: 15px;"><p class="mb-0">No hay calificaciones disponibles para este producto.</p></div>'}
               </div>
             </div>
           `;
@@ -74,4 +83,5 @@ if (!prodID) {
     }
   });
 }
+
 
