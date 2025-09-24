@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -43,47 +43,52 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-  <li class="nav-item">
-    <a class="nav-link" href="login.html">Login</a>
-  </li>
-  <li class="nav-item">
-    <a id="navusername" class="nav-link"></a>
-  </li>
+          <li class="nav-item">
+            <a id="navusername" class="nav-link"></a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-    <main class="pb-5 container">
-        <!--Nuevo-->
-      <div class="controls-wrapper">
-  <div class="price-filter">
-<div class="sort-options">
-    <label>Ordenar por:</label>
-    <select id="sort-select">
-      <option value="">--Seleccione--</option>
-      <option value="price-asc">Precio (Asc)</option>
-      <option value="price-desc">Precio (Desc)</option>
-      <option value="sold-desc">Relevancia (Vendidos ↓)</option>
-    </select>
-  </div>
 
-    <label>Precio</label>
-    <input type="number" id="min-price" placeholder="Mín" />
-    <input type="number" id="max-price" placeholder="Máx" />
-    <button id="filter-btn">Filtrar</button>
-    <button id="clear-btn">Limpiar</button>
+  <main class="pb-5 container">
+
+  <!-- Stefa -->
+<div class="controls-wrapper modern-controls">
+  <div class="sort-filter-group">
+    <div class="sort-options">
+      <label for="sort-select" class="sort-label">Ordenar por:</label>
+      <select id="sort-select" class="sort-select">
+        <option value="" disabled selected>Seleccione una opción</option>
+        <option value="price-asc">Precio (ascendente)</option>
+        <option value="price-desc">Precio (descendente)</option>
+        <option value="sold-desc">Relevancia (más vendidos)</option>
+      </select>
+    </div>
+
+    <div class="price-filter">
+      <label class="filter-label">Precio</label>
+      <div class="price-inputs">
+        <input type="number" id="min-price" class="price-input" placeholder="Mín" min="0" />
+        <input type="number" id="max-price" class="price-input" placeholder="Máx" min="0" />
+      </div>
+      <div class="filter-buttons">
+        <button id="filter-btn" class="btn btn-primary">Filtrar</button>
+        <button id="clear-btn" class="btn btn-outline-secondary">Limpiar</button>
+      </div>
+    </div>
   </div>
-  
-  
 </div>
 <!-- Hasta aca -->
-    
-<div id="products-container" class="products-container">
-  <!-- Tarjetas de productos aquí -->
-</div>
 
-      <!-- Contenedor donde se insertarán las tarjetas -->
-      <div id="products-container" class="products-container"></div>
+
+<div class="d-flex justify-content-end flex-wrap gap-2 mt-3">
+        <input type="search" id="search-input" class="form-control" placeholder="Buscar productos...">
+      </div> 
+   
+  <!-- Tarjetas de productos aquí -->
+  <!-- Contenedor donde se insertarán las tarjetas -->
+    <div id="products-container" class="products-container"></div>
     </main>
     <footer class="text-muted">
       <div class="container">
