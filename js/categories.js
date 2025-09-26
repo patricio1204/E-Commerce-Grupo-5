@@ -5,6 +5,7 @@ let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
+const searchInput = document.getElementById("search-categories"); // buscador de categorías
 
 function sortCategories(criteria, array){
     let result = [];
@@ -140,4 +141,19 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showCategoriesList();
     });
+});
+
+// buscador de categorías
+searchInput.addEventListener("input", () => {
+    const searchText = searchInput.value.toLowerCase();
+    const filteredCategories = currentCategoriesArray.filter(cat => 
+        cat.name.toLowerCase().includes(searchText) ||
+        cat.description.toLowerCase().includes(searchText)
+    );
+
+    // en lugar de volver a escribir todo, usamos tu función
+    const backup = currentCategoriesArray; 
+    currentCategoriesArray = filteredCategories;
+    showCategoriesList();
+    currentCategoriesArray = backup;
 });
