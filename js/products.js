@@ -169,8 +169,11 @@ function applySortAndRender(list) {
 
 // hasta acá
 
+<<<<<<< Updated upstream
 
 //Desafiate - Aldana
+=======
+>>>>>>> Stashed changes
 searchInput.addEventListener("input", () => {
     const searchText = searchInput.value.toLowerCase();
     const filteredProducts = products.filter(prod => 
