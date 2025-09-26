@@ -749,3 +749,78 @@ a.custom-card:hover {
   transform: scale(1.05);
   box-shadow: 0 0.75rem 1.5rem rgba(0, 123, 255, 0.35);
 }
+
+#inputParagraph {
+ background-color:#ced4da;
+ margin-left: 50px;
+ margin-bottom: 10px;
+ width: 1000px;
+ height:300px;
+ font-size: large;
+ display: block;
+}
+
+#buttonAdd{
+background-color:#ff7700;
+color:white;
+font-weight: bold;
+border-radius: 10px;
+border-width: 0px;
+transform: scale(1.5);
+margin-left: 65px;
+margin-bottom: 10px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+display: block;
+}
+
+#calif{
+  margin-left:50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  color:#333;
+  font-size:large;
+}
+
+section h1{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+section select{
+  margin-left:50px;
+}
+
+#container{
+  margin-left:85px;
+  background-color: #EEF1F3;
+  border-radius: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  transform: scale(1.2) ;
+}
+
+.username {
+  color:#007bff;
+  font-weight: bold; 
+  padding-top:15px;
+  padding-left:15px;
+  font-size: x-large;
+}
+
+.paragrafo {
+  font-size: large; 
+  padding-left:15px;
+}
+
+.calificacion {
+  padding-left:15px;
+}
+
+.reviewdate{
+  padding-left:15px;
+  padding-bottom:15px;
+  font-style: italic;
+  font-size: small;
+  color:#666
+}

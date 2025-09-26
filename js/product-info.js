@@ -112,6 +112,7 @@ document.querySelectorAll('#related-products .product-related-card').forEach(car
             </div>
           `;
           document.querySelector('main .container .product-detail').insertAdjacentHTML('beforeend', seccionCalificaciones);
+          
         } else {
           console.error('Error al cargar las calificaciones');
         }
@@ -121,6 +122,64 @@ document.querySelectorAll('#related-products .product-related-card').forEach(car
       document.querySelector('main .container').innerHTML = '<div class="alert alert-danger text-center" role="alert"><h4>Error al cargar la información del producto</h4><p>Inténtalo de nuevo más tarde.</p></div>';
     }
   });
+  
+const buttonAdd = document.getElementById("buttonAdd");
+const container = document.getElementById("container");
+const inputParagraph = document.getElementById("inputParagraph");
+const ratingSelect = document.getElementById("ratingSelect");
+
+buttonAdd.addEventListener("click", function () {
+  let text = inputParagraph.value;
+  let rating = ratingSelect.value;
+
+  if (rating === "Calificación" || rating === "") { 
+    alert("Debe seleccionar una calificación"); 
+    return; 
+  } 
+
+  if (text) {
+
+     let userData = localStorage.getItem("userSession");
+    if (userData) {
+      try {
+        username = JSON.parse(userData).usuario;
+      } catch (e) {
+        console.error("Error parsing user data", e);
+      }
+    }
+
+    let userElement = document.createElement("p");
+    userElement.textContent = `${username}`;
+    userElement.classList.add("username");
+
+    let now = new Date();
+    let day = String(now.getDate()).padStart(2, '0');
+    let month = String(now.getMonth() + 1).padStart(2, '0'); 
+    let year = now.getFullYear();
+    let formattedDate = `${day}/${month}/${year}`;
+
+    let dateElement = document.createElement("p");
+    dateElement.textContent = `Fecha: ${formattedDate}`;
+    dateElement.classList.add("reviewdate");
+
+    let ratingElement = document.createElement("p");
+    ratingElement.textContent = "⭐".repeat(rating);
+    ratingElement.classList.add("calificacion");
+
+    let paragraph = document.createElement("p");
+    paragraph.classList.add("paragrafo");
+
+    container.appendChild(userElement);
+    container.appendChild(ratingElement);
+    paragraph.appendChild(document.createTextNode(text));
+    container.appendChild(paragraph);
+    inputParagraph.value = "";
+    container.appendChild(dateElement);
+  } else {
+    alert("Debe ingresar algún texto para ser ingresado")
+  }
+})
+
 }
 
 
