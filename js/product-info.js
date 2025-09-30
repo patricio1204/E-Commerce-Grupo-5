@@ -63,19 +63,19 @@ if (!prodID) {
                     <div class="rating-stars">
                       <div class="stars-container">
                         <input type="radio" id="star1" name="rating" value="1" class="d-none">
-                        <label for="star1" class="star-label">★</label>
+                        <label for="star1" class="star-label fs-2">★</label>
                         
                         <input type="radio" id="star2" name="rating" value="2" class="d-none">
-                        <label for="star2" class="star-label">★</label>
+                        <label for="star2" class="star-label fs-2">★</label>
                         
                         <input type="radio" id="star3" name="rating" value="3" class="d-none">
-                        <label for="star3" class="star-label">★</label>
+                        <label for="star3" class="star-label fs-2">★</label>
                         
                         <input type="radio" id="star4" name="rating" value="4" class="d-none">
-                        <label for="star4" class="star-label">★</label>
+                        <label for="star4" class="star-label fs-2">★</label>
                         
                         <input type="radio" id="star5" name="rating" value="5" class="d-none">
-                        <label for="star5" class="star-label">★</label>
+                        <label for="star5" class="star-label fs-2">★</label>
                       </div>
                       <div class="rating-labels">
                         <span>1 - Malo</span>
@@ -352,4 +352,3 @@ function agregarCalificacion(nuevaCalificacion) {
     console.error("No se encontró el contenedor de calificaciones");
   }
 }
-
