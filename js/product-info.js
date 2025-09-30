@@ -44,7 +44,6 @@ if (!prodID) {
       `;
 
       // Insertar el HTML generado en el contenedor principal de la página
-
       document.querySelector("main .container").innerHTML = html;
 
       // Agregar formulario de calificación después de la información del producto
@@ -64,21 +63,24 @@ if (!prodID) {
                     <div class="rating-stars">
                       <div class="stars-container">
                         <input type="radio" id="star1" name="rating" value="1" class="d-none">
-                        <label for="star1" class="star-label fs-3">★</label>
+                        <label for="star1" class="star-label">★</label>
                         
                         <input type="radio" id="star2" name="rating" value="2" class="d-none">
-                        <label for="star2" class="star-label fs-3">★</label>
+                        <label for="star2" class="star-label">★</label>
                         
                         <input type="radio" id="star3" name="rating" value="3" class="d-none">
-                        <label for="star3" class="star-label fs-3" >★</label>
+                        <label for="star3" class="star-label">★</label>
                         
                         <input type="radio" id="star4" name="rating" value="4" class="d-none">
-                        <label for="star4" class="star-label fs-3">★</label>
+                        <label for="star4" class="star-label">★</label>
                         
                         <input type="radio" id="star5" name="rating" value="5" class="d-none">
-                        <label for="star5" class="star-label fs-3">★</label>
+                        <label for="star5" class="star-label">★</label>
                       </div>
-                      
+                      <div class="rating-labels">
+                        <span>1 - Malo</span>
+                        <span>5 - Excelente</span>
+                      </div>
                     </div>
                   </div>
                   <div class="text-center">
@@ -290,84 +292,6 @@ if (!prodID) {
             });
         } else {
           console.error("Error al cargar las calificaciones");
-
-      document.querySelector('main .container').innerHTML = html;
-
-
-      // Entrega 4 - Lucia: Mostrar prods relacionados:
-let relatedHTML = `
-  <div class="row mt-5">
-    <div class="col-12">
-      <h2 class="mb-4 text-center fw-semibold text-primary border-bottom border-3 border-primary pb-2">
-        Productos relacionados
-      </h2>
-      <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center" id="related-products">
-        ${product.relatedProducts.map(related => `
-          <div class="col">
-            <div class="card h-100 shadow-sm rounded-4 border-0 product-related-card" style="cursor: pointer;" data-prod-id="${related.id}">
-              <img src="${related.image}" class="card-img-top rounded-top-4" alt="${related.name}" style="object-fit: cover; height: 150px;">
-              <div class="card-body text-center px-2">
-                <p class="card-text text-truncate fw-semibold text-primary mb-0" title="${related.name}">${related.name}</p>
-              </div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  </div>
-`;
-
-// Insertar productos relacionados **abajo, después** del bloque product-detail
-document.querySelector('main .container').insertAdjacentHTML('beforeend', relatedHTML);
-
-// Agregar evento click para cambiar el producto mostrado al pulsar relacionado
-document.querySelectorAll('#related-products .product-related-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const newProdID = card.getAttribute('data-prod-id');
-    localStorage.setItem('prodID', newProdID);
-    location.reload();
-  });
-});
-
-
-      //E4 Lu hasta aqui
-
-      // Ahora obtener y mostrar las calificaciones
-      let urlComentarios = PRODUCT_INFO_COMMENTS_URL + prodID + EXT_TYPE;
-      getJSONData(urlComentarios).then(resultComentarios => {
-        if (resultComentarios.status === 'ok') {
-          let comentarios = resultComentarios.data;
-          let seccionCalificaciones = `
-            <div class="row mt-5">
-              <div class="col-12">
-                <h2 class="mb-4 text-center" style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">Calificaciones de Usuarios</h2>
-                ${comentarios.length > 0 ? comentarios.map(comentario => `
-                  <div class="card mb-4 border-0 shadow" style="border-radius: 15px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-                    <div class="card-body p-4">
-                      <div class="row">
-                        <div class="col-md-8">
-                          <h5 class="card-title" style="color: #007bff; font-weight: bold; margin-bottom: 15px;">${comentario.user}</h5>
-                          <p class="card-text" style="font-size: 1.1em; line-height: 1.6; color: #495057;">${comentario.description}</p>
-                          <p class="card-text"><small class="text-muted" style="font-style: italic;">Fecha: ${new Date(comentario.dateTime).toLocaleDateString('es-ES')}</small></p>
-                        </div>
-                        <div class="col-md-4 text-end d-flex flex-column justify-content-center align-items-end">
-                          <div class="rating-display mb-2" style="font-size: 2em; font-weight: bold; color: #ffc107; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
-                            ${comentario.score}
-                          </div>
-                          <small class="text-muted" style="font-size: 0.9em;">/ 5</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                `).join('') : '<div class="alert alert-info text-center" role="alert" style="border-radius: 15px;"><p class="mb-0">No hay calificaciones disponibles para este producto.</p></div>'}
-              </div>
-            </div>
-          `;
-          document.querySelector('main .container .product-detail').insertAdjacentHTML('beforeend', seccionCalificaciones);
-          
-        } else {
-          console.error('Error al cargar las calificaciones');
-
         }
       });
     } else {
@@ -376,66 +300,7 @@ document.querySelectorAll('#related-products .product-related-card').forEach(car
         '<div class="alert alert-danger text-center" role="alert"><h4>Error al cargar la información del producto</h4><p>Inténtalo de nuevo más tarde.</p></div>';
     }
   });
-  
-const buttonAdd = document.getElementById("buttonAdd");
-const container = document.getElementById("container");
-const inputParagraph = document.getElementById("inputParagraph");
-const ratingSelect = document.getElementById("ratingSelect");
-
-buttonAdd.addEventListener("click", function () {
-  let text = inputParagraph.value;
-  let rating = ratingSelect.value;
-
-  if (rating === "Calificación" || rating === "") { 
-    alert("Debe seleccionar una calificación"); 
-    return; 
-  } 
-
-  if (text) {
-
-     let userData = localStorage.getItem("userSession");
-    if (userData) {
-      try {
-        username = JSON.parse(userData).usuario;
-      } catch (e) {
-        console.error("Error parsing user data", e);
-      }
-    }
-
-    let userElement = document.createElement("p");
-    userElement.textContent = `${username}`;
-    userElement.classList.add("username");
-
-    let now = new Date();
-    let day = String(now.getDate()).padStart(2, '0');
-    let month = String(now.getMonth() + 1).padStart(2, '0'); 
-    let year = now.getFullYear();
-    let formattedDate = `${day}/${month}/${year}`;
-
-    let dateElement = document.createElement("p");
-    dateElement.textContent = `Fecha: ${formattedDate}`;
-    dateElement.classList.add("reviewdate");
-
-    let ratingElement = document.createElement("p");
-    ratingElement.textContent = "⭐".repeat(rating);
-    ratingElement.classList.add("calificacion");
-
-    let paragraph = document.createElement("p");
-    paragraph.classList.add("paragrafo");
-
-    container.appendChild(userElement);
-    container.appendChild(ratingElement);
-    paragraph.appendChild(document.createTextNode(text));
-    container.appendChild(paragraph);
-    inputParagraph.value = "";
-    container.appendChild(dateElement);
-  } else {
-    alert("Debe ingresar algún texto para ser ingresado")
-  }
-})
-
 }
-
 
 // Función para agregar una nueva calificación a la lista
 function agregarCalificacion(nuevaCalificacion) {
