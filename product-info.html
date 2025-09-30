@@ -49,36 +49,67 @@
       </div>
     </nav>
 
-    <main>
-      <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-        </div>
-      </div>
-    </main>
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
-        <p>
-          Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
-        </p>
-      </div>
-    </footer>
-    <div id="spinner-wrapper">
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+   
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="alert alert-danger text-center" role="alert">
+        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
       </div>
     </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/product-info.js"></script>
-  </body>
+  </main>
+
+
+<section id="calificaciones">
+ <h1 style="margin-left: 50px;" >Agrega una calificación!</h1>
+ 
+    <select id="ratingSelect" name="Calificación" required style="display: block; margin-bottom: 10px;">
+        <option disabled selected>Calificación</option>
+        <option value=1>1⭐</option>
+        <option value=2>2⭐</option>
+        <option value=3>3⭐</option>
+        <option value=4>4⭐</option>
+        <option value=5>5⭐</option>
+    </select>
+ 
+
+    <textarea id="inputParagraph"></textarea>
+    
+    <button id="buttonAdd" style="margin-left: 65px;">Enviar</button>
+    <p id="calif">Mis calificaciones:</p>
+    <div id="container"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </section>
+
+
+
+
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    </div>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/product-info.js"></script>
+</body>
+
 </html>
+
