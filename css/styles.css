@@ -372,3 +372,413 @@ a.custom-card:hover {
   margin-top: auto;
 }
 
+<<<<<<< Updated upstream
+=======
+/* Tableta en Modo Vertical: 768 x 1024 px */
+@media (max-width: 768px) {
+  .products-container {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .product-card {
+    margin-bottom: 10px;
+  }
+
+  .product-title {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .navbar-nav {
+    flex-direction: row; /*crea una fila con los elementos */
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0 10px;
+  }
+}
+
+/* Smartphone Pequeño (Ej. iPhone SE): 320 x 568 px */
+@media (max-width: 320px) {
+  .products-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .product-title {
+    font-size: 13px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 5px 0;
+  }
+
+  footer .container {
+    text-align: center;
+  }
+
+  .float-end {
+    float: none !important;
+    margin-bottom: 10px;
+  }
+}
+
+
+.controls-wrapper {
+  display: flex; /* convierte el contenedor en un flexbox contenedor, lo que permite alinear hijos fácilmente */
+  align-items: center; /* alinea los items hijos verticalmente al centro dentro del contenedor flex */
+  gap: 16px; /* espacio uniforme de 16px entre cada elemento hijo */
+  margin: 16px 0; /* margen arriba y abajo de 16px, sin margen horizontal */
+  justify-content: flex-end; /* alinea todos los elementos hijos al extremo derecho dentro del contenedor (eje principal) */
+}
+
+/* Botón "Limpiar" */
+#clear-btn {
+  background-color: transparent; /* fondo transparente, nada visible como color de fondo */
+  border: none; /* sin borde visible */
+  color: blue; /* texto de color azul */
+  text-decoration: underline; /* subrayado en el texto — da efecto de link normalmente */
+  cursor: pointer; /* cambia el cursor al pasar por encima, indicando que se puede clicar */
+  padding: 0; /* sin relleno interno */
+}
+
+/* Botón "Filtrar" */
+#filter-btn {
+  background-color: #e9e9e9; /* color de fondo gris claro */
+  border: none; /* sin borde visible */
+  color: #000; /* texto de color negro */
+  cursor: pointer; /* cursor cambia para indicar clicable */
+  padding: 6px 12px; /* espacio interno: 6px arriba/abajo, 12px izquierda/derecha */
+  border-radius: 4px; /* bordes redondeados con radio de 4px */
+}
+
+.controls-wrapper { 
+  display: flex; /* nuevamente define flexbox para .controls-wrapper */
+  align-items: center; /* alinea hijos verticalmente al centro */
+  gap: 12px; /* diferencia de antes: ahora espacio de 12px entre hijos */
+  margin: 16px 0; /* mismo margen arriba/abajo de 16px */
+  justify-content: flex-end; /* alineados al extremo derecho */
+}
+
+.sort-icons .sort-icon {
+  cursor: pointer; /* cursor tipo puntero al pasar sobre ellos, sugiriendo que son clicables */
+  font-size: 1.2em;  /* tamaño relativo de fuente: 1.2 veces el tamaño base, para agrandar un poco los iconos de orden */
+  margin-right: 8px; /* margen derecho de 8px para separación entre iconos o entre un icono y otro elemento */
+}
+
+.price-filter button {
+  /* mantener estilos previos: Filtrar: fondo celeste claro, Limpiar: azul subrayado sin fondo */
+  /* Esta regla es un comentario de intención: indica que los dos botones deben conservar los estilos que ya tienen arriba */
+}
+
+#filter-btn {
+  background-color: #ededed; /* nuevo color de fondo ligeramente distinto al anterior gris claro (#e9e9e9) */
+  border: none; /* sin borde */
+  color: #000; /* texto negro */
+  padding: 6px 12px; /* mismo relleno que antes */
+  border-radius: 4px; /* mismo redondeo de bordes */
+}
+
+#clear-btn {
+  background-color: transparent; /* fondo transparente */
+  border: none; /* sin borde */
+  color: blue; /* texto azul */
+  text-decoration: underline; /* subrayado */
+  cursor: pointer; /* cursor puntero al pasar sobre él */
+  padding: 0; /* sin relleno interno */
+}
+
+/* Nuevos estilos para Filtros: */
+
+.modern-controls {
+  max-width: 600px;
+  margin: 20px auto;
+  background: #f8f9fa;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.sort-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-options {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 180px;
+}
+
+.sort-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.sort-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.price-filter {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2 1 300px;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-label {
+  font-weight: 600;
+  margin-right: 12px;
+  font-size: 0.9rem;
+  flex-basis: 100%;
+}
+
+.price-inputs {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.price-input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.price-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 9px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  color: #6c757d;
+  border: 2px solid #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+
+@media (max-width: 480px) {
+  .sort-filter-group {
+    flex-direction: column; /* Apilar verticalmente todos los controles */
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .sort-options,
+  .price-filter {
+    flex: 1 1 100%; /* Ocupan todo el ancho disponible */
+  }
+
+  .price-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .price-inputs {
+    flex-direction: column; /* Inputs uno sobre otro */
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .price-input {
+    width: 100%; /* Inputs toman todo el ancho */
+  }
+
+  .filter-buttons {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn {
+    flex: 1 1 45%; /* Botones en dos columnas */
+  }
+}
+
+/* Media query intermedia para tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .sort-filter-group {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .sort-options,
+  .price-filter {
+    flex: 1 1 48%; /* Mitad de ancho para cada grupo */
+  }
+
+  .price-filter {
+    flex-direction: column;
+  }
+
+  .price-inputs {
+    flex-direction: row;
+  }
+
+  .price-input {
+    width: auto;
+  }
+
+  .filter-buttons {
+    justify-content: flex-start;
+  }
+}
+
+.product-related-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-related-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 123, 255, 0.35);
+}
+
+#inputParagraph {
+ background-color:#ced4da;
+ margin-left: 50px;
+ margin-bottom: 10px;
+ width: 1000px;
+ height:300px;
+ font-size: large;
+ display: block;
+}
+
+#buttonAdd{
+background-color:#ff7700;
+color:white;
+font-weight: bold;
+border-radius: 10px;
+border-width: 0px;
+transform: scale(1.5);
+margin-left: 65px;
+margin-bottom: 10px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+display: block;
+}
+
+#calif{
+  margin-left:50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  color:#333;
+  font-size:large;
+}
+
+section h1{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+section select{
+  margin-left:50px;
+}
+
+#container{
+  margin-left:85px;
+  background-color: #EEF1F3;
+  border-radius: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  transform: scale(1.2) ;
+}
+
+.username {
+  color:#007bff;
+  font-weight: bold; 
+  padding-top:15px;
+  padding-left:15px;
+  font-size: x-large;
+}
+
+.paragrafo {
+  font-size: large; 
+  padding-left:15px;
+}
+
+.calificacion {
+  padding-left:15px;
+}
+
+.reviewdate{
+  padding-left:15px;
+  padding-bottom:15px;
+  font-style: italic;
+  font-size: small;
+  color:#666
+}
+
+#navusername {
+  cursor: pointer;
+}
+>>>>>>> Stashed changes
