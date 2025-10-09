@@ -78,3 +78,45 @@ document.addEventListener('DOMContentLoaded', function() {
     
     mostrarNombreUsuario();
 });
+
+
+//CAMBIO DE TEMA OSCURO O CLARO
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  const isDark = savedTheme === 'dark';
+  document.body.classList.toggle('dark-mode', isDark);
+  updateThemeButton(isDark);
+}
+
+function updateThemeButton(isDark) {
+  const sunIcon = document.getElementById('icon-sun');
+  const moonIcon = document.getElementById('icon-moon');
+  const themeText = document.getElementById('theme-text');
+
+  if (isDark) {
+    sunIcon && (sunIcon.style.display = 'inline');
+    moonIcon && (moonIcon.style.display = 'none');
+    themeText && (themeText.textContent = 'Modo Claro');
+  } else {
+    sunIcon && (sunIcon.style.display = 'none');
+    moonIcon && (moonIcon.style.display = 'inline');
+    themeText && (themeText.textContent = 'Modo Oscuro');
+  }
+}
+
+function setupThemeToggle() {
+  const btn = document.getElementById('theme-toggle-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateThemeButton(isDark);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  applySavedTheme();
+  setupThemeToggle();
+});
+
