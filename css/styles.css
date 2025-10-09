@@ -824,3 +824,52 @@ section select{
   font-size: small;
   color:#666
 }
+
+#subida-foto {
+  cursor: pointer;
+  border: 2px dashed #0087f7;
+  border-radius: 5px;
+  background: white;
+  padding: 1rem;
+}
+
+#btn-aceptar, #btn-rechazar {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+}
+
+#btn-aceptar {
+  color: #198754; /* Bootstrap success color */
+}
+
+#btn-rechazar {
+  color: #dc3545; /* Bootstrap danger color */
+}
+
+#imagen-perfil {
+  border-radius: 50%;
+  max-width: 200px;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  #imagen-perfil {
+    max-width: 150px;
+  }
+
+  .foto-perfil-title {
+    padding-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #imagen-perfil {
+    max-width: 120px;
+  }
+
+  .foto-perfil-title {
+    padding-top: 1.5rem;
+  }
+}
