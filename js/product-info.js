@@ -291,7 +291,7 @@ if (!prodID) {
               });
             });
         } else {
-          console.error("Error al cargar las calificaciones");
+          console.error("Error al cargar Producto");
         }
       });
     } else {
