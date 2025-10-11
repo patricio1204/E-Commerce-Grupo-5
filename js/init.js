@@ -75,8 +75,17 @@ document.addEventListener('DOMContentLoaded', function() {
       (!session && !window.location.pathname.includes(`login.html`)){
       window.location.href =`login.html`;
     }
-    
+
     mostrarNombreUsuario();
+
+    // cerrar sesión
+    const logoutBtn = document.getElementById("logout");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", function() {
+            localStorage.removeItem("userSession");
+            window.location = "login.html";
+        });
+    }
 });
 
 
