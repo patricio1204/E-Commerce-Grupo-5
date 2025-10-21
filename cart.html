@@ -7,11 +7,14 @@
   <title>eMercado - Todo lo que busques está aquí</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -30,13 +33,21 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <button id="theme-toggle-btn" class="btn btn-outline-light d-flex align-items-center gap-2"
+              aria-label="Toggle light/dark mode">
+              <i id="icon-sun" class="fas fa-sun" style="display:none;"></i>
+              <i id="icon-moon" class="fas fa-moon"></i>
+              <span id="theme-text">Modo Oscuro</span>
+            </button>
+          </li>
+          <li class="nav-item">
             <a id="navusername" class="nav-link"></a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  
+
   <main>
     <div class="container">
       <div class="alert alert-danger text-center" role="alert">
@@ -49,7 +60,8 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">

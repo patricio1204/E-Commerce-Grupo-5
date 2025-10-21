@@ -1,31 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>eMercado - Todo lo que busques está aquí</title>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-  </head>
-
-
-
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
 
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -60,72 +50,71 @@
 
   <main class="pb-5 container">
 
-  <!-- Stefa -->
-<div class="controls-wrapper modern-controls">
-  <div class="sort-filter-group">
-    <div class="sort-options">
-      <label for="sort-select" class="sort-label">Ordenar por:</label>
-      <select id="sort-select" class="sort-select">
-        <option value="" disabled selected>Seleccione una opción</option>
-        <option value="price-asc">Precio (ascendente)</option>
-        <option value="price-desc">Precio (descendente)</option>
-        <option value="sold-desc">Relevancia (más vendidos)</option>
-      </select>
+    <!-- Stefa -->
+    <div class="controls-wrapper modern-controls">
+      <div class="sort-filter-group">
+        <div class="sort-options">
+          <label for="sort-select" class="sort-label">Ordenar por:</label>
+          <select id="sort-select" class="sort-select">
+            <option value="" disabled selected>Seleccione una opción</option>
+            <option value="price-asc">Precio (ascendente)</option>
+            <option value="price-desc">Precio (descendente)</option>
+            <option value="sold-desc">Relevancia (más vendidos)</option>
+          </select>
+        </div>
+
+        <div class="price-filter">
+          <label class="filter-label">Precio</label>
+          <div class="price-inputs">
+            <input type="number" id="min-price" class="price-input" placeholder="Mín" min="0" />
+            <input type="number" id="max-price" class="price-input" placeholder="Máx" min="0" />
+          </div>
+          <div class="filter-buttons">
+            <button id="filter-btn" class="btn btn-primary">Filtrar</button>
+            <button id="clear-btn" class="btn btn-outline-secondary">Limpiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hasta aca -->
+
+
+    <div class="d-flex justify-content-end flex-wrap gap-2 mt-3">
+      <input type="search" id="search-input" class="form-control" placeholder="Buscar productos...">
     </div>
 
-    <div class="price-filter">
-      <label class="filter-label">Precio</label>
-      <div class="price-inputs">
-        <input type="number" id="min-price" class="price-input" placeholder="Mín" min="0" />
-        <input type="number" id="max-price" class="price-input" placeholder="Máx" min="0" />
-      </div>
-      <div class="filter-buttons">
-        <button id="filter-btn" class="btn btn-primary">Filtrar</button>
-        <button id="clear-btn" class="btn btn-outline-secondary">Limpiar</button>
-      </div>
+    <!-- Tarjetas de productos aquí -->
+    <!-- Contenedor donde se insertarán las tarjetas -->
+    <div id="products-container" class="products-container"></div>
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>
+        Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
+    </div>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </div>
-</div>
-<!-- Hasta aca -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/products.js"></script>
+  <script>
+    // Verificar sesión al cargar la página
+    if (window.SessionManager) {
+      window.SessionManager.redirigirSiNoHaySesion();
+    }
+  </script>
+</body>
 
-
-<div class="d-flex justify-content-end flex-wrap gap-2 mt-3">
-        <input type="search" id="search-input" class="form-control" placeholder="Buscar productos...">
-      </div> 
-   
-  <!-- Tarjetas de productos aquí -->
-  <!-- Contenedor donde se insertarán las tarjetas -->
-    <div id="products-container" class="products-container"></div>
-    </main>
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
-        <p>
-          Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
-        </p>
-      </div>
-    </footer>
-    <div id="spinner-wrapper">
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/products.js"></script>
-    <script>
-      // Verificar sesión al cargar la página
-      if (window.SessionManager) {
-          window.SessionManager.redirigirSiNoHaySesion();
-      }
-    </script>
-  </body>
 </html>

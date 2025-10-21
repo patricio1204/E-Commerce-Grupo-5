@@ -8,6 +8,10 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -27,6 +31,7 @@
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -34,23 +39,40 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+        <ul class="navbar-nav w-100 justify-content-between align-items-center">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Inicio</a>
+            <a class="nav-link active d-flex align-items-center gap-1" href="index.html">
+              <i class="fas fa-home"></i> Inicio
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
+            <a class="nav-link d-flex align-items-center gap-1" href="categories.html">
+              <i class="fas fa-list"></i> Categorías
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
+            <a class="nav-link d-flex align-items-center gap-1" href="sell.html">
+              <i class="fas fa-tag"></i> Vender
+            </a>
           </li>
           <li class="nav-item">
-            <a id="navusername" class="nav-link"></a>
+            <button id="theme-toggle-btn" class="btn btn-outline-light d-flex align-items-center gap-2"
+              aria-label="Toggle light/dark mode">
+              <i id="icon-sun" class="fas fa-sun" style="display:none;"></i>
+              <i id="icon-moon" class="fas fa-moon"></i>
+              <span id="theme-text">Modo Oscuro</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <a id="navusername" class="nav-link d-flex align-items-center gap-1" href="#">
+              <i class="fas fa-user-circle"></i> Perfil
+            </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main>
     <div class="container">
       <div class="alert alert-danger text-center" role="alert">
@@ -63,7 +85,8 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
