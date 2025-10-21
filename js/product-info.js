@@ -38,6 +38,7 @@ if (!prodID) {
       }</h3>
               <p><strong>Vendidos:</strong> ${product.soldCount}</p>
               <p><strong>Categoría:</strong> ${product.category}</p>
+              <button id="buy-button" class="btn btn-success mt-3">Comprar</button>
             </div>
           </div>
         </div>
@@ -45,6 +46,28 @@ if (!prodID) {
 
       // Insertar el HTML generado en el contenedor principal de la página
       document.querySelector("main .container").innerHTML = html;
+
+      // Agregar funcionalidad al botón "Comprar"
+      document.getElementById("buy-button").addEventListener("click", function() {
+        // Obtener información del producto
+        const quantity = 1; // Cantidad por defecto
+        const subtotal = product.cost * quantity;
+        const productInfo = {
+          id: product.id,
+          name: product.name,
+          cost: product.cost,
+          currency: product.currency,
+          quantity: quantity,
+          image: product.images ? product.images[0] : product.image,
+          subtotal: subtotal
+        };
+
+        // Guardar en localStorage
+        localStorage.setItem("cartProduct", JSON.stringify(productInfo));
+
+        // Navegar a cart.html
+        window.location.href = "cart.html";
+      });
 
       // Agregar formulario de calificación después de la información del producto
       let formularioCalificacion = `
