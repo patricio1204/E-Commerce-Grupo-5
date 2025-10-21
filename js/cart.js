@@ -39,20 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Insertar el HTML en el contenedor principal
     document.querySelector("main .container").innerHTML = cartHTML;
 
-    // Agregar funcionalidad para actualizar cantidad y subtotal
-    const quantityInput = document.getElementById("quantity");
-    const subtotalSpan = document.getElementById("subtotal");
 
-    quantityInput.addEventListener("input", function() {
-      const newQuantity = parseInt(quantityInput.value) || 1;
-      const newSubtotal = product.cost * newQuantity;
-      subtotalSpan.textContent = `$${newSubtotal} ${product.currency}`;
-
-      // Actualizar localStorage
-      product.quantity = newQuantity;
-      product.subtotal = newSubtotal;
-      localStorage.setItem("cartProduct", JSON.stringify(product));
-    });
   } else {
     // Si no hay producto en el carrito, mostrar mensaje
     document.querySelector("main .container").innerHTML = `
