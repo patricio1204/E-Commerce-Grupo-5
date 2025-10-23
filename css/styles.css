@@ -927,7 +927,7 @@ section select {
 
 
 
-/* --- Modo oscuro integrado con tu CSS --- */
+/* --- Modo oscuro base*/
 body.dark-mode{
   background-color: #1d1c1c;
   color: #e0e0e0;
