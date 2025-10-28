@@ -1,66 +1,140 @@
-// Este script se encarga de mostrar el producto agregado al carrito desde localStorage
+// Este script se encarga de mostrar el carrito de compras
+// Verifica si hay productos en localStorage y los muestra en el carrito
 
-document.addEventListener("DOMContentLoaded", function() {
-  // Obtener el producto del localStorage
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtener el producto del carrito desde localStorage
   const cartProduct = localStorage.getItem("cartProduct");
 
-  if (cartProduct) {
+  // Contenedor principal donde se insertará el carrito
+  const container = document.querySelector("main .container");
+
+  if (!cartProduct) {
+    // Si no hay producto en el carrito, mostrar mensaje
+    container.innerHTML = `
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8">
+                    <div class="alert alert-info text-center" role="alert">
+                        <h4 class="alert-heading">Carrito vacío</h4>
+                        <p>No hay productos en tu carrito de compras.</p>
+                        <hr>
+                        <p class="mb-0">Visita nuestro <a href="index.html" class="alert-link">catálogo</a> para agregar productos.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+  } else {
+    // Si hay producto, parsear y mostrar en el carrito
     const product = JSON.parse(cartProduct);
 
-    // Crear el HTML para mostrar el producto en el carrito
+    // Calcular subtotal inicial
+    let subtotal = product.subtotal || product.cost * product.quantity;
+
+    // Crear HTML del carrito
     const cartHTML = `
-      <div class="row">
-        <div class="col-12">
-          <h2 class="mb-4 text-center">Carrito de Compras</h2>
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="${product.image}" alt="${product.name}" class="img-fluid">
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-10">
+                    <h2 class="mb-4 text-center">Carrito de Compras</h2>
+                    
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <!-- Imagen del producto -->
+                                <div class="col-md-3 text-center">
+                                    <img src="${product.image}" alt="${product.name}" class="img-fluid rounded" style="max-height: 150px;">
+                                </div>
+                                
+                                <!-- Información del producto -->
+                                <div class="col-md-9">
+                                    <form id="cart-form">
+                                        <div class="row">
+                                            <!-- Nombre -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="product-name" class="form-label fw-bold">Nombre</label>
+                                                <input type="text" class="form-control" id="product-name" value="${product.name}" readonly>
+                                            </div>
+                                            
+                                            <!-- Costo -->
+                                            <div class="col-md-3 mb-3">
+                                                <label for="product-cost" class="form-label fw-bold">Costo</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">$</span>
+                                                    <input type="text" class="form-control" id="product-cost" value="${product.cost}" readonly>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Moneda -->
+                                            <div class="col-md-3 mb-3">
+                                                <label for="product-currency" class="form-label fw-bold">Moneda</label>
+                                                <input type="text" class="form-control" id="product-currency" value="${product.currency}" readonly>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <!-- Cantidad -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="product-quantity" class="form-label fw-bold">Cantidad</label>
+                                                <input type="number" class="form-control" id="product-quantity" min="1" value="${product.quantity}" required>
+                                            </div>
+                                            
+                                            <!-- Subtotal -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="product-subtotal" class="form-label fw-bold">Subtotal</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">$</span>
+                                                    <input type="text" class="form-control" id="product-subtotal" value="${subtotal}" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Botones de acción -->
+                                        <div class="row mt-4">
+                                            <div class="col-12 d-flex justify-content-between">
+                                                <a href="index.html" class="btn btn-outline-secondary">
+                                                    <i class="fas fa-arrow-left me-2"></i>Seguir Comprando
+                                                </a>
+                                                <button type="button" id="checkout-btn" class="btn btn-success">
+                                                    <i class="fas fa-credit-card me-2"></i>Proceder al Pago
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                  <h3>${product.name}</h3>
-                  <p class="text-muted">${product.description}</p>
-                  <h4 class="text-primary">Precio: $${product.cost} ${product.currency}</h4>
-                  <div class="mb-3">
-                    <label for="quantity" class="form-label">Cantidad:</label>
-                    <input type="number" id="quantity" class="form-control" value="${product.quantity}" min="1" style="width: 100px;">
-                  </div>
-                  <p><strong>Subtotal:</strong> <span id="subtotal">$${product.subtotal} ${product.currency}</span></p>
-                  <p><strong>ID del Producto:</strong> ${product.id}</p>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    `;
+        `;
 
-    // Insertar el HTML en el contenedor principal
-    document.querySelector("main .container").innerHTML = cartHTML;
+    // Insertar el carrito en el contenedor
+    container.innerHTML = cartHTML;
 
-// Función para actualizar el subtotal
-function updateSubtotal() {
-  const quantity = parseInt(document.getElementById("quantity").value, 10);
-  const subtotal = product.cost * quantity;
-  document.getElementById("subtotal").textContent = `$${subtotal} ${product.currency}`;
+    // Agregar funcionalidad para actualizar el subtotal cuando cambia la cantidad
+    const quantityInput = document.getElementById("product-quantity");
+    const subtotalInput = document.getElementById("product-subtotal");
 
-  // Actualizar el subtotal en el objeto del producto y guardarlo en localStorage
-  product.quantity = quantity;
-  product.subtotal = subtotal;
-  localStorage.setItem("cartProduct", JSON.stringify(product));
-}
+    quantityInput.addEventListener("input", function () {
+      const quantity = parseInt(this.value) || 1;
+      const cost = parseFloat(product.cost);
+      const newSubtotal = cost * quantity;
 
-// Agregar el evento de escucha al campo de cantidad
-document.getElementById("quantity").addEventListener("input", updateSubtotal);
+      // Actualizar el valor del subtotal
+      subtotalInput.value = newSubtotal.toFixed(2);
 
-  } else {
-    // Si no hay producto en el carrito, mostrar mensaje
-    document.querySelector("main .container").innerHTML = `
-      <div class="alert alert-info text-center" role="alert">
-        <h4>No hay productos en el carrito</h4>
-        <p>Agrega productos desde la página de información del producto.</p>
-      </div>
-    `;
+      // Actualizar el producto en localStorage
+      product.quantity = quantity;
+      product.subtotal = newSubtotal;
+      localStorage.setItem("cartProduct", JSON.stringify(product));
+    });
+
+    // Agregar funcionalidad al botón de pago
+    document
+      .getElementById("checkout-btn")
+      .addEventListener("click", function () {
+        alert(
+          "¡Gracias por tu compra! Esta funcionalidad estará disponible próximamente."
+        );
+        // Aquí podrías redirigir a una página de checkout o procesar el pago
+      });
   }
 });
