@@ -39,6 +39,20 @@ document.addEventListener("DOMContentLoaded", function() {
     // Insertar el HTML en el contenedor principal
     document.querySelector("main .container").innerHTML = cartHTML;
 
+// Función para actualizar el subtotal
+function updateSubtotal() {
+  const quantity = parseInt(document.getElementById("quantity").value, 10);
+  const subtotal = product.cost * quantity;
+  document.getElementById("subtotal").textContent = `$${subtotal} ${product.currency}`;
+
+  // Actualizar el subtotal en el objeto del producto y guardarlo en localStorage
+  product.quantity = quantity;
+  product.subtotal = subtotal;
+  localStorage.setItem("cartProduct", JSON.stringify(product));
+}
+
+// Agregar el evento de escucha al campo de cantidad
+document.getElementById("quantity").addEventListener("input", updateSubtotal);
 
   } else {
     // Si no hay producto en el carrito, mostrar mensaje
