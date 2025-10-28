@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 // Este script se encarga de mostrar el producto agregado al carrito desde localStorage
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -67,4 +65,3 @@ document.getElementById("quantity").addEventListener("input", updateSubtotal);
     `;
   }
 });
->>>>>>> Stashed changes
