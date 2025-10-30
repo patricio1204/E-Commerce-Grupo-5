@@ -142,3 +142,5 @@ document.addEventListener("click", function (event) {
     alert("¡Gracias por tu compra! Esta funcionalidad estará disponible próximamente.");
   }
 });
+
+

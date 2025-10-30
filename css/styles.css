@@ -38,7 +38,11 @@ body {
   color: var(--header-link);
   text-decoration: none;
   transition: color 0.2s;
+  padding: 2rem;
 }
+
+
+
 
 .site-header .dropdown-menu a {
   color: var(--header-link-drop);
@@ -438,6 +442,43 @@ body.dark-mode .products-container .product-card:hover {
   margin-top: 0.5rem;
 }
 
+/* LIST-GROUP - Adaptación automática a modo claro/oscuro */
+.list-group-item {
+  background-color: var(--card-bg-color) !important;
+  color: var(--card-text-color) !important;
+  border-color: var(--card-border-color) !important;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.list-group-item:hover {
+  background-color: var(--card-hover-bg) !important;
+  box-shadow: var(--card-hover-shadow);
+}
+
+/* tarjetas de calificaciones: */
+.card,
+.card-body,
+.card.border,
+.card.shadow,
+.border-0,
+.shadow {
+  background-color: var(--card-bg-color) !important;
+  color: var(--card-text-color) !important;
+  border-color: var(--card-border-color) !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* Hover opcional para mejorar contraste en modo oscuro */
+body.dark-mode .card:hover {
+  background-color: var(--card-hover-bg) !important;
+  box-shadow: var(--card-hover-shadow) !important;
+}
+
+
+
+
+
 
 /* RESPONSIVIDAD*/
 @media (max-width: 768px) {
@@ -459,4 +500,24 @@ body.dark-mode .products-container .product-card:hover {
     flex-direction: column;
     gap: 16px;
   }
+}
+
+
+
+/* Esto es pal badge del Carrito */
+.bg-orange {
+  background-color: #e29b2f !important;
+  color: #fff;
+}
+
+#cart-badge {
+  width: 20px;
+  height: 20px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 2px solid #fff;
+  z-index: 10;
 }
