@@ -47,27 +47,73 @@ if (!prodID) {
       // Insertar el HTML generado en el contenedor principal de la página
       document.querySelector("main .container").innerHTML = html;
 
-      // Agregar funcionalidad al botón "Comprar"
-      document.getElementById("buy-button").addEventListener("click", function() {
-        // Obtener información del producto
-        const quantity = 1; // Cantidad por defecto
-        const subtotal = product.cost * quantity;
-        const productInfo = {
-          id: product.id,
-          name: product.name,
-          cost: product.cost,
-          currency: product.currency,
-          quantity: quantity,
-          image: product.images ? product.images[0] : product.image,
-          subtotal: subtotal
-        };
 
-        // Guardar en localStorage
-        localStorage.setItem("cartProduct", JSON.stringify(productInfo));
 
-        // Navegar a cart.html
-        window.location.href = "cart.html";
-      });
+
+
+
+      // FUNCIONES PA COMPRAR / AGREGAR AL CARRITO (desde un array porque pues, sino se sobreescribe al seleccionar otro)
+
+function addToCart(newProduct) {
+  const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
+  const existingProductIndex = cartProducts.findIndex(p => p.id === newProduct.id);
+
+  if (existingProductIndex !== -1) {
+    cartProducts[existingProductIndex].quantity += newProduct.quantity;
+    cartProducts[existingProductIndex].subtotal = cartProducts[existingProductIndex].cost * cartProducts[existingProductIndex].quantity;
+  } else {
+    newProduct.subtotal = newProduct.cost * newProduct.quantity;
+    cartProducts.push(newProduct);
+  }
+
+  // Guardar el array actualizado
+  localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+
+  // Calcular el monto total sumando los subtotales de todos los productos
+  const totalAmount = cartProducts.reduce((total, product) => total + product.subtotal, 0);
+
+  // Guardar el monto total en localStorage (clave separada)
+  localStorage.setItem("cartTotalAmount", totalAmount.toFixed(2));
+}
+
+document.getElementById("buy-button").addEventListener("click", function() {
+  const quantity = 1; // Cantidad por defecto
+  const productInfo = {
+    id: product.id,
+    name: product.name,
+    cost: product.cost,
+    currency: product.currency,
+    quantity: quantity,
+    image: product.images ? product.images[0] : product.image,
+    subtotal: product.cost * quantity,
+  };
+
+  addToCart(productInfo);
+  window.location.href = "cart.html";
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       // Agregar formulario de calificación después de la información del producto
       let formularioCalificacion = `

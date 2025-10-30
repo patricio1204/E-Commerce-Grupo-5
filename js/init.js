@@ -129,3 +129,22 @@ document.addEventListener('DOMContentLoaded', () => {
   setupThemeToggle();
 });
 
+
+//El señor baaaadge
+function actualizarBadgeCarrito() {
+  const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  const badge = document.getElementById("cart-badge");
+  const totalCantidad = cartProducts.reduce((sum, p) => sum + p.quantity, 0);
+
+  if (badge) {
+    badge.textContent = totalCantidad;
+    badge.style.display = totalCantidad > 0 ? "flex" : "none";
+  }
+}
+
+// Ejecutar al cargar la página
+document.addEventListener("DOMContentLoaded", actualizarBadgeCarrito);
+
+// Opcional: actualizar si se modifica el carrito desde otra pestaña
+window.addEventListener("storage", actualizarBadgeCarrito);
+
