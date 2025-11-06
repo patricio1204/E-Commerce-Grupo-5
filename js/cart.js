@@ -262,18 +262,9 @@ function mostrarCarrito() {
 function actualizarCostos() {
   const productosEnCarrito = JSON.parse(localStorage.getItem("cartProducts")) || [];
   let subtotal = productosEnCarrito.reduce((sum, p) => sum + (p.subtotal || p.cost * p.quantity), 0);
-};
 
-  
-
-  // Si los elementos de visualización de costos existen, actualizarlos
-  const elementoCostoSubtotal = document.getElementById("costoSubtotal");
-  const elementoCostoEnvio = document.getElementById("costoEnvio");
-  const elementoCostoTotal = document.getElementById("costoTotal");
-
-  if (elementoCostoSubtotal) elementoCostoSubtotal.textContent = `0`;
-  if (elementoCostoEnvio) elementoCostoEnvio.textContent = `0`;
-  if (elementoCostoTotal) elementoCostoTotal.textContent = `0`;
+ 
+}
 
 
 // La función actualizarTotal ahora solo actualiza el total de productos sin envío
