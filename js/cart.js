@@ -24,7 +24,7 @@ function mostrarCarrito() {
     return;
   }
 
-  let htmlCarrito = `<h2 class="mb-4 text-center">Carrito de Compras</h2>`;
+  let htmlCarrito = `<h2 class="mb-4 text-center">Carrito de Compras</h2><div id="productos-container">`;
   let totalProductos = 0; // Variable para el total de productos sin envío
 
   productosEnCarrito.forEach((producto, indice) => {
@@ -235,7 +235,6 @@ function mostrarCarrito() {
 
   // Re-adjuntar listeners de eventos después de actualizar el innerHTML
   agregarEventosCantidad();
-  agregarEventosEliminar();
   actualizarCostos(); // Llama a esta función para inicializar los costos
 
   // Agregar listeners de eventos para los radios de tipo de envío
@@ -310,19 +309,17 @@ function agregarEventosEliminar() {
   const contenedorPrincipal = document.querySelector("main .container");
   if (!contenedorPrincipal) return;
 
-  contenedorPrincipal.querySelectorAll(".btn-eliminar").forEach(boton => {
-    boton.addEventListener("click", function () {
-      const indice = parseInt(this.getAttribute("data-index"));
+  contenedorPrincipal.addEventListener("click", function (e) {
+    const button = e.target.closest(".btn-eliminar");
+    if (button) {
+      const indice = parseInt(button.getAttribute("data-index"));
       let productosEnCarrito = JSON.parse(localStorage.getItem("cartProducts")) || [];
 
       productosEnCarrito.splice(indice, 1);
       localStorage.setItem("cartProducts", JSON.stringify(productosEnCarrito));
 
       mostrarCarrito();
-      agregarEventosCantidad();
-      agregarEventosEliminar();
-      actualizarTotal();
-    });
+    }
   });
 }
 
