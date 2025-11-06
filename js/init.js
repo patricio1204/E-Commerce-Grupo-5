@@ -75,6 +75,76 @@ document.addEventListener('DOMContentLoaded', function() {
       (!session && !window.location.pathname.includes(`login.html`)){
       window.location.href =`login.html`;
     }
-    
+
     mostrarNombreUsuario();
+
+    // cerrar sesión
+    const logoutBtn = document.getElementById("logout");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", function() {
+            localStorage.removeItem("userSession");
+            window.location = "login.html";
+        });
+    }
 });
+
+
+//CAMBIO DE TEMA OSCURO O CLARO
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  const isDark = savedTheme === 'dark';
+  document.body.classList.toggle('dark-mode', isDark);
+  updateThemeButton(isDark);
+}
+
+function updateThemeButton(isDark) {
+  const sunIcon = document.getElementById('icon-sun');
+  const moonIcon = document.getElementById('icon-moon');
+  const themeText = document.getElementById('theme-text');
+
+  if (isDark) {
+    sunIcon && (sunIcon.style.display = 'inline');
+    moonIcon && (moonIcon.style.display = 'none');
+    themeText && (themeText.textContent = 'Modo Claro');
+  } else {
+    sunIcon && (sunIcon.style.display = 'none');
+    moonIcon && (moonIcon.style.display = 'inline');
+    themeText && (themeText.textContent = 'Modo Oscuro');
+  }
+}
+
+function setupThemeToggle() {
+  const btn = document.getElementById('theme-toggle-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateThemeButton(isDark);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  applySavedTheme();
+  setupThemeToggle();
+});
+
+
+//El señor baaaadge
+function actualizarBadgeCarrito() {
+  const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  const badge = document.getElementById("cart-badge");
+  const totalCantidad = cartProducts.reduce((sum, p) => sum + p.quantity, 0);
+
+  if (badge) {
+    badge.textContent = totalCantidad;
+    badge.style.display = totalCantidad > 0 ? "flex" : "none";
+  }
+}
+
+// Ejecutar al cargar la página
+document.addEventListener("DOMContentLoaded", actualizarBadgeCarrito);
+
+// Opcional: actualizar si se modifica el carrito desde otra pestaña
+window.addEventListener("storage", actualizarBadgeCarrito);
+

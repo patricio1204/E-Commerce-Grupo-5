@@ -8,6 +8,10 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -23,37 +27,74 @@
         font-size: 3.5rem;
       }
     }
-  </style>
+  s-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between align-items-center">
+          <li class="nav-item"></style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+        <ul class="navbar-nav w-100 justify-content-between align-items-center">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active d-flex align-items-center gap-1" href="index.html">
+              <i class="fas fa-home"></i> Inicio
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
+            <a class="nav-link d-flex align-items-center gap-1" href="categories.html">
+              <i class="fas fa-list"></i> Categorías
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
+            <a class="nav-link d-flex align-items-center gap-1" href="sell.html">
+              <i class="fas fa-tag"></i> Vender
+            </a>
           </li>
-  <li class="nav-item">
-    <a class="nav-link" href="login.html">Login</a>
-  </li>
-  <li class="nav-item">
-    <a id="navusername" class="nav-link"></a>
-  </li>
+          <li class="nav-item position-relative">
+            <a class="nav-link d-flex align-items-center gap-1 position-relative" href="cart.html">
+              <i class="fas fa-shopping-cart"></i> Mi Carrito
+              <span id="cart-badge" class="badge rounded-circle bg-orange">0</span>
+            </a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <button id="theme-toggle-btn" class="btn btn-outline-light d-flex align-items-center gap-2"
+              aria-label="Toggle light/dark mode">
+              <i id="icon-sun" class="fas fa-sun" style="display:none;"></i>
+              <i id="icon-moon" class="fas fa-moon"></i>
+              <span id="theme-text">Modo Oscuro</span>
+            </button>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <span id="navusername"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#" id="logout">Cerrar Sesión</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+
+
   <main>
     <div class="container">
       <div class="alert alert-danger text-center" role="alert">
@@ -61,16 +102,11 @@
       </div>
     </div>
   </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
+  
+  
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/dropzone.js"></script>
   <script src="js/my-profile.js"></script>
 </body>
 
