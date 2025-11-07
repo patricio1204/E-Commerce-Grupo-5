@@ -260,9 +260,15 @@ function mostrarCarrito() {
 // Función para calcular y mostrar todos los costos (Subtotal, Costo de envío, Total)
 function actualizarCostos() {
   const productosEnCarrito = JSON.parse(localStorage.getItem("cartProducts")) || [];
-  let subtotal = productosEnCarrito.reduce((sum, p) => sum + (p.subtotal || p.cost * p.quantity), 0);
-
- 
+  const subtotal = productosEnCarrito.reduce((sum, p) => sum + (p.subtotal || p.cost * p.quantity), 0);
+  const envioSeleccionado = document.querySelector('input[name="tipoEnvio"]:checked');
+  const porcentajeEnvio = envioSeleccionado ? parseFloat(envioSeleccionado.value) : 0.15;
+  const costoEnvio = subtotal * porcentajeEnvio;
+  const total = subtotal + costoEnvio;
+  
+  document.getElementById("costoSubtotal").textContent = `$${subtotal.toFixed(2)}`;
+  document.getElementById("costoEnvio").textContent = `$${costoEnvio.toFixed(2)}`;
+  document.getElementById("costoTotal").textContent = `$${total.toFixed(2)}`;
 }
 
 
