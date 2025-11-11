@@ -306,7 +306,7 @@ function agregarEventosCantidad() {
 
       localStorage.setItem("cartProducts", JSON.stringify(productosEnCarrito));
 
-      actualizarTotal();
+      actualizarCostos();
     });
   });
 }
