@@ -227,6 +227,80 @@ function mostrarCarrito() {
 
   contenedorPrincipal.innerHTML = htmlCarrito;
 
+  // Agregar después de renderizar el botón “Finalizar compra”
+const btnFinalizar = document.getElementById("btnFinalizarCompra");
+if (btnFinalizar) {
+  btnFinalizar.addEventListener("click", function(e) {
+    e.preventDefault();
+    if (validarCheckout()) {
+      alert("¡Compra realizada con éxito!");
+      localStorage.removeItem("cartProducts");
+      // opcional: window.location.href = "gracias.html";
+    }
+  });
+}
+
+function validarCheckout() {
+  let esValido = true;
+  const mensajes = [];
+
+  // Dirección
+  const depto = document.getElementById("departamento").value.trim();
+  const loc = document.getElementById("localidad").value.trim();
+  const calle = document.getElementById("calle").value.trim();
+  const numero = document.getElementById("numero").value.trim();
+  const esquina = document.getElementById("esquina").value.trim();
+
+  if (!depto) { esValido = false; mensajes.push("El departamento es obligatorio."); }
+  if (!loc) { esValido = false; mensajes.push("La localidad es obligatoria."); }
+  if (!calle) { esValido = false; mensajes.push("La calle es obligatoria."); }
+  if (!numero) { esValido = false; mensajes.push("El número es obligatorio."); }
+  if (!esquina) { esValido = false; mensajes.push("La esquina es obligatoria."); }
+
+  // Envío
+  const envioSel = document.querySelector('input[name="tipoEnvio"]:checked');
+  if (!envioSel) {
+    esValido = false;
+    mensajes.push("Debe seleccionar una forma de envío.");
+  }
+
+  // Cantidades
+  document.querySelectorAll(".product-quantity").forEach((input, idx) => {
+    const val = parseInt(input.value, 10);
+    if (isNaN(val) || val < 1) {
+      esValido = false;
+      mensajes.push(`La cantidad del producto ${idx + 1} debe ser mayor que 0.`);
+    }
+  });
+
+  // Forma de pago
+  const pagoSel = document.querySelector('input[name="metodoPago"]:checked');
+  if (!pagoSel) {
+    esValido = false;
+    mensajes.push("Debe seleccionar un método de pago.");
+  } else {
+    if (pagoSel.value === "tarjetaCredito") {
+      const numTar = document.getElementById("numeroTarjeta").value.trim();
+      const nombreTar = document.getElementById("nombreTarjeta").value.trim();
+      const fechaVen = document.getElementById("fechaVencimiento").value.trim();
+      const cvv = document.getElementById("cvv").value.trim();
+
+      if (!numTar) { esValido = false; mensajes.push("El número de tarjeta es obligatorio."); }
+      if (!nombreTar) { esValido = false; mensajes.push("El nombre en la tarjeta es obligatorio."); }
+      if (!fechaVen) { esValido = false; mensajes.push("La fecha de vencimiento es obligatoria."); }
+      if (!cvv) { esValido = false; mensajes.push("El CVV es obligatorio."); }
+    }
+    // si tienes otros métodos, agregar validación aquí
+  }
+
+  if (!esValido) {
+    alert("Por favor corrige los siguientes errores:\n" + mensajes.join("\n"));
+  }
+
+  return esValido;
+}
+
+
   // Actualizar el total de productos en el resumen del carrito existente
   const contenedorTotalCarrito = document.getElementById("carrito-total");
   if (contenedorTotalCarrito) {
