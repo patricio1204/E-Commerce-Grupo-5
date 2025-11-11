@@ -458,6 +458,8 @@ body.dark-mode .products-container .product-card:hover {
 /* tarjetas de calificaciones: */
 .card,
 .card-body,
+.modal-dialog,
+.modal-content,
 .card.border,
 .card.shadow,
 .border-0,
