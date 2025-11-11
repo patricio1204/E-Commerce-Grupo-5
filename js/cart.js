@@ -107,25 +107,30 @@ function mostrarCarrito() {
           <div class="col-md-6 mb-3">
             <label for="departamento" class="form-label">Departamento</label>
             <input type="text" class="form-control" id="departamento" required>
+            <div class="invalid-feedback" id="error-departamento">Este campo es obligatorio.</div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="localidad" class="form-label">Localidad</label>
             <input type="text" class="form-control" id="localidad" required>
+            <div class="invalid-feedback" id="error-localidad">Este campo es obligatorio.</div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="calle" class="form-label">Calle</label>
             <input type="text" class="form-control" id="calle" required>
+            <div class="invalid-feedback" id="error-calle">Este campo es obligatorio.</div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="numero" class="form-label">Número</label>
             <input type="text" class="form-control" id="numero" required>
+            <div class="invalid-feedback" id="error-numero">Este campo es obligatorio.</div>
           </div>
         </div>
         <div class="mb-3">
           <label for="esquina" class="form-label">Esquina</label>
           <input type="text" class="form-control" id="esquina" required>
+          <div class="invalid-feedback" id="error-esquina">Este campo es obligatorio.</div>
         </div>
       </div>
     </div>`;
@@ -168,25 +173,67 @@ function mostrarCarrito() {
             <div class="mb-3">
               <label for="numeroTarjeta" class="form-label">Número de tarjeta</label>
               <input type="text" class="form-control" id="numeroTarjeta" required>
+              <div class="invalid-feedback" id="error-numeroTarjeta">Este campo es obligatorio.</div>
             </div>
             <div class="mb-3">
               <label for="nombreTarjeta" class="form-label">Nombre en la tarjeta</label>
               <input type="text" class="form-control" id="nombreTarjeta" required>
+              <div class="invalid-feedback" id="error-nombreTarjeta">Este campo es obligatorio.</div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="fechaVencimiento" class="form-label">Fecha de vencimiento</label>
                 <input type="text" class="form-control" id="fechaVencimiento" placeholder="MM/AA" required>
+                <div class="invalid-feedback" id="error-fechaVencimiento">Este campo es obligatorio.</div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="cvv" class="form-label">CVV</label>
                 <input type="text" class="form-control" id="cvv" required>
+                <div class="invalid-feedback" id="error-cvv">Este campo es obligatorio.</div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+            <button type="button" class="btn btn-primary" id="btnGuardarTarjeta">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  // Modal de errores
+  htmlCarrito += `
+    <div class="modal fade" id="modalErrores" tabindex="-1" aria-labelledby="modalErroresLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalErroresLabel">Errores en el formulario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalErroresBody">
+            <!-- Mensajes de error aquí -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  // Modal de éxito
+  htmlCarrito += `
+    <div class="modal fade" id="modalExito" tabindex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalExitoLabel">Compra Exitosa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Gracias por su compra!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
           </div>
         </div>
       </div>
@@ -233,7 +280,8 @@ if (btnFinalizar) {
   btnFinalizar.addEventListener("click", function(e) {
     e.preventDefault();
     if (validarCheckout()) {
-      alert("¡Compra realizada con éxito!");
+      const modal = new bootstrap.Modal(document.getElementById("modalExito"));
+      modal.show();
       localStorage.removeItem("cartProducts");
       // opcional: window.location.href = "gracias.html";
     }
@@ -243,6 +291,8 @@ if (btnFinalizar) {
 function validarCheckout() {
   let esValido = true;
   const mensajes = [];
+  let hasAddressErrors = false;
+  let hasPaymentErrors = false;
 
   // Dirección
   const depto = document.getElementById("departamento").value.trim();
@@ -251,11 +301,55 @@ function validarCheckout() {
   const numero = document.getElementById("numero").value.trim();
   const esquina = document.getElementById("esquina").value.trim();
 
-  if (!depto) { esValido = false; mensajes.push("El departamento es obligatorio."); }
-  if (!loc) { esValido = false; mensajes.push("La localidad es obligatoria."); }
-  if (!calle) { esValido = false; mensajes.push("La calle es obligatoria."); }
-  if (!numero) { esValido = false; mensajes.push("El número es obligatorio."); }
-  if (!esquina) { esValido = false; mensajes.push("La esquina es obligatoria."); }
+  if (!depto) {
+    hasAddressErrors = true;
+    esValido = false;
+    document.getElementById("departamento").classList.add('is-invalid');
+    document.getElementById("error-departamento").style.display = 'block';
+  } else {
+    document.getElementById("departamento").classList.remove('is-invalid');
+    document.getElementById("error-departamento").style.display = 'none';
+  }
+
+  if (!loc) {
+    hasAddressErrors = true;
+    esValido = false;
+    document.getElementById("localidad").classList.add('is-invalid');
+    document.getElementById("error-localidad").style.display = 'block';
+  } else {
+    document.getElementById("localidad").classList.remove('is-invalid');
+    document.getElementById("error-localidad").style.display = 'none';
+  }
+
+  if (!calle) {
+    hasAddressErrors = true;
+    esValido = false;
+    document.getElementById("calle").classList.add('is-invalid');
+    document.getElementById("error-calle").style.display = 'block';
+  } else {
+    document.getElementById("calle").classList.remove('is-invalid');
+    document.getElementById("error-calle").style.display = 'none';
+  }
+
+  if (!numero) {
+    hasAddressErrors = true;
+    esValido = false;
+    document.getElementById("numero").classList.add('is-invalid');
+    document.getElementById("error-numero").style.display = 'block';
+  } else {
+    document.getElementById("numero").classList.remove('is-invalid');
+    document.getElementById("error-numero").style.display = 'none';
+  }
+
+  if (!esquina) {
+    hasAddressErrors = true;
+    esValido = false;
+    document.getElementById("esquina").classList.add('is-invalid');
+    document.getElementById("error-esquina").style.display = 'block';
+  } else {
+    document.getElementById("esquina").classList.remove('is-invalid');
+    document.getElementById("error-esquina").style.display = 'none';
+  }
 
   // Envío
   const envioSel = document.querySelector('input[name="tipoEnvio"]:checked');
@@ -276,8 +370,8 @@ function validarCheckout() {
   // Forma de pago
   const pagoSel = document.querySelector('input[name="metodoPago"]:checked');
   if (!pagoSel) {
+    hasPaymentErrors = true;
     esValido = false;
-    mensajes.push("Debe seleccionar un método de pago.");
   } else {
     if (pagoSel.value === "tarjetaCredito") {
       const numTar = document.getElementById("numeroTarjeta").value.trim();
@@ -293,8 +387,20 @@ function validarCheckout() {
     // si tienes otros métodos, agregar validación aquí
   }
 
-  if (!esValido) {
-    alert("Por favor corrige los siguientes errores:\n" + mensajes.join("\n"));
+  // Agregar mensajes generales basados en flags
+  if (hasAddressErrors && hasPaymentErrors) {
+    mensajes.push("Por favor rellenar campos obligatorios y método de pago");
+  } else if (hasAddressErrors) {
+    mensajes.push("Por favor rellenar campos obligatorios");
+  } else if (hasPaymentErrors) {
+    mensajes.push("Debe seleccionar un método de pago.");
+  }
+
+  if (mensajes.length > 0) {
+    const modalErroresBody = document.getElementById("modalErroresBody");
+    modalErroresBody.innerHTML = mensajes.map(msg => `<p>${msg}</p>`).join("");
+    const modal = new bootstrap.Modal(document.getElementById("modalErrores"));
+    modal.show();
   }
 
   return esValido;
@@ -328,7 +434,73 @@ function validarCheckout() {
     });
   });
 
- 
+  // Agregar validación en tiempo real para campos de tarjeta de crédito
+  agregarValidacionTarjeta();
+
+  // Agregar validación en tiempo real para campos de dirección
+  agregarValidacionDireccion();
+
+}
+
+function agregarValidacionTarjeta() {
+  const camposTarjeta = [
+    { id: 'numeroTarjeta', errorId: 'error-numeroTarjeta' },
+    { id: 'nombreTarjeta', errorId: 'error-nombreTarjeta' },
+    { id: 'fechaVencimiento', errorId: 'error-fechaVencimiento' },
+    { id: 'cvv', errorId: 'error-cvv' }
+  ];
+
+  camposTarjeta.forEach(campo => {
+    const input = document.getElementById(campo.id);
+    const errorDiv = document.getElementById(campo.errorId);
+
+    if (input && errorDiv) {
+      input.addEventListener('blur', function() {
+        if (this.value.trim() === '') {
+          this.classList.add('is-invalid');
+          errorDiv.style.display = 'block';
+        } else {
+          this.classList.remove('is-invalid');
+          errorDiv.style.display = 'none';
+        }
+      });
+
+      input.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+          this.classList.remove('is-invalid');
+          errorDiv.style.display = 'none';
+        }
+      });
+    }
+  });
+
+  // Validación al guardar la tarjeta
+  const btnGuardar = document.getElementById('btnGuardarTarjeta');
+  if (btnGuardar) {
+    btnGuardar.addEventListener('click', function(e) {
+      e.preventDefault();
+      let valido = true;
+      camposTarjeta.forEach(campo => {
+        const input = document.getElementById(campo.id);
+        const errorDiv = document.getElementById(campo.errorId);
+        if (input.value.trim() === '') {
+          input.classList.add('is-invalid');
+          errorDiv.style.display = 'block';
+          valido = false;
+        } else {
+          input.classList.remove('is-invalid');
+          errorDiv.style.display = 'none';
+        }
+      });
+      if (valido) {
+        // Cerrar modal y seleccionar método de pago
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalPago'));
+        modal.hide();
+        document.getElementById('tarjetaCredito').checked = true;
+        document.getElementById('metodoPagoSeleccionado').textContent = 'Tarjeta de crédito';
+      }
+    });
+  }
 }
 
 // Función para calcular y mostrar todos los costos (Subtotal, Costo de envío, Total)
@@ -407,4 +579,38 @@ function agregarEventosEliminar() {
 function agregarModalCheckout() {
   // No es necesario agregar el modal aquí, ya está en el HTML dinámico
   // Solo se asegura que los listeners estén adjuntos
+}
+
+function agregarValidacionDireccion() {
+  const camposDireccion = [
+    { id: 'departamento', errorId: 'error-departamento' },
+    { id: 'localidad', errorId: 'error-localidad' },
+    { id: 'calle', errorId: 'error-calle' },
+    { id: 'numero', errorId: 'error-numero' },
+    { id: 'esquina', errorId: 'error-esquina' }
+  ];
+
+  camposDireccion.forEach(campo => {
+    const input = document.getElementById(campo.id);
+    const errorDiv = document.getElementById(campo.errorId);
+
+    if (input && errorDiv) {
+      input.addEventListener('blur', function() {
+        if (this.value.trim() === '') {
+          this.classList.add('is-invalid');
+          errorDiv.style.display = 'block';
+        } else {
+          this.classList.remove('is-invalid');
+          errorDiv.style.display = 'none';
+        }
+      });
+
+      input.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+          this.classList.remove('is-invalid');
+          errorDiv.style.display = 'none';
+        }
+      });
+    }
+  });
 }
