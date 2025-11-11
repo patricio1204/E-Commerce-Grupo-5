@@ -220,6 +220,25 @@ function mostrarCarrito() {
       </div>
     </div>`;
 
+  // Modal de éxito
+  htmlCarrito += `
+    <div class="modal fade" id="modalExito" tabindex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalExitoLabel">Compra Exitosa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Gracias por su compra!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
   // Sección Costos
   htmlCarrito += `
     <div class="card mb-4">
@@ -261,7 +280,8 @@ if (btnFinalizar) {
   btnFinalizar.addEventListener("click", function(e) {
     e.preventDefault();
     if (validarCheckout()) {
-      alert("¡Compra realizada con éxito!");
+      const modal = new bootstrap.Modal(document.getElementById("modalExito"));
+      modal.show();
       localStorage.removeItem("cartProducts");
       // opcional: window.location.href = "gracias.html";
     }
