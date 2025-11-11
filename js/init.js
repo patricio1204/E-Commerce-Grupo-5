@@ -7,85 +7,88 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
-let showSpinner = function(){
+let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-let hideSpinner = function(){
+let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-let getJSONData = function(url){
-    let result = {};
-    showSpinner();
-    return fetch(url)
+let getJSONData = function (url) {
+  let result = {};
+  showSpinner();
+  return fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
-      }else{
+      } else {
         throw Error(response.statusText);
       }
     })
-    .then(function(response) {
-          result.status = 'ok';
-          result.data = response;
-          hideSpinner();
-          return result;
+    .then(function (response) {
+      result.status = 'ok';
+      result.data = response;
+      hideSpinner();
+      return result;
     })
-    .catch(function(error) {
-        result.status = 'error';
-        result.data = error;
-        hideSpinner();
-        return result;
+    .catch(function (error) {
+      result.status = 'error';
+      result.data = error;
+      hideSpinner();
+      return result;
     });
 }
 
 // Función para mostrar el nombre de usuario en la barra de navegación
 function mostrarNombreUsuario() {
-    // Obtener datos de sesión del almacenamiento local
-    const session = localStorage.getItem('userSession');
-    // Obtener elemento donde mostrar el nombre de usuario
-    const usernameElement = document.getElementById('navusername');
-    // Obtener enlace de inicio de sesión
-    const loginLink = document.querySelector('.nav-link[href="login.html"]');
-  
-    // Si hay sesión y elemento de usuario existe
-    if (session && usernameElement) {
-        // Parsear datos de usuario y mostrar nombre
-        const userData = JSON.parse(session);
-        usernameElement.textContent = userData.usuario;
-        usernameElement.style.display = '';
-        // remover enlace de login si existe
-        if (loginLink) {
-            loginLink.remove();
-        }
-    } else if (usernameElement) {
-        // Si no hay sesión, remueve nombre de usuario
-        usernameElement.remove(); 
+  // Obtener datos de sesión del almacenamiento local
+  const session = localStorage.getItem('userSession');
+  // Obtener elemento donde mostrar el nombre de usuario
+  const usernameElement = document.getElementById('navusername');
+  // Obtener enlace de inicio de sesión
+  const loginLink = document.querySelector('.nav-link[href="login.html"]');
+
+  // Si hay sesión y elemento de usuario existe
+  if (session && usernameElement) {
+    // Parsear datos de usuario y mostrar nombre
+    const userData = JSON.parse(session);
+    usernameElement.textContent = userData.usuario || "Usuario";
+    usernameElement.style.display = '';
+    // remover enlace de login si existe
+    if (loginLink) {
+      loginLink.remove();
     }
+  } else if (usernameElement) {
+    // Si no hay sesión, remueve nombre de usuario
+    usernameElement.remove();
+  }
 }
 
+window.addEventListener("storage", mostrarNombreUsuario);
+
+
 /* Código para que redireccione a Login o Index según corresponda */
-document.addEventListener('DOMContentLoaded', function() {
-    const session = localStorage.getItem('userSession');
-    if (session && window.location.pathname.includes(`login.html`)){
-      window.location.href =`index.html`;
-    }
-    else if
-      (!session && !window.location.pathname.includes(`login.html`)){
-      window.location.href =`login.html`;
-    }
+document.addEventListener('DOMContentLoaded', function () {
+  const session = localStorage.getItem('userSession');
+  if (session && window.location.pathname.includes(`login.html`)) {
+    window.location.href = `index.html`;
+  }
+  else if
+    (!session && !window.location.pathname.includes(`login.html`)) {
+    window.location.href = `login.html`;
+  }
 
-    mostrarNombreUsuario();
+  mostrarNombreUsuario();
 
-    // cerrar sesión
-    const logoutBtn = document.getElementById("logout");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", function() {
-            localStorage.removeItem("userSession");
-            window.location = "login.html";
-        });
-    }
+  // cerrar sesión
+  const logoutBtn = document.getElementById("logout");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function () {
+      localStorage.removeItem("userSession");
+      window.location = "login.html";
+    });
+  }
 });
 
 
@@ -128,6 +131,42 @@ document.addEventListener('DOMContentLoaded', () => {
   applySavedTheme();
   setupThemeToggle();
 });
+
+
+
+//CARGA DE NAV-BAR DINÁMICO 
+document.addEventListener("DOMContentLoaded", () => {
+  const navbarContainer = document.getElementById("navbar-container");
+
+  if (navbarContainer) {
+    fetch("nav-bar.html")
+      .then(response => {
+        if (!response.ok) throw new Error("No se pudo cargar la barra de navegación.");
+        return response.text();
+      })
+      .then(data => {
+        navbarContainer.innerHTML = data;
+
+        // Iniciar  Bootstrap
+        const dropdowns = document.querySelectorAll('.dropdown-toggle');
+        dropdowns.forEach(dropdown => new bootstrap.Dropdown(dropdown));
+
+        // ejecutar func del badge cuando el elemento está en el DOM
+        if (typeof actualizarBadgeCarrito === "function") {
+          actualizarBadgeCarrito();
+        }
+
+        // D/L mode
+        if (typeof initDarkMode === "function") {
+          initDarkMode();
+        }
+      })
+      .catch(error => console.error("Error al cargar la barra de navegación:", error));
+  }
+});
+
+
+
 
 
 //El señor baaaadge
