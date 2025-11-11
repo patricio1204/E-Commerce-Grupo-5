@@ -201,6 +201,25 @@ function mostrarCarrito() {
       </div>
     </div>`;
 
+  // Modal de errores
+  htmlCarrito += `
+    <div class="modal fade" id="modalErrores" tabindex="-1" aria-labelledby="modalErroresLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalErroresLabel">Errores en el formulario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalErroresBody">
+            <!-- Mensajes de error aquí -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
   // Sección Costos
   htmlCarrito += `
     <div class="card mb-4">
@@ -252,6 +271,8 @@ if (btnFinalizar) {
 function validarCheckout() {
   let esValido = true;
   const mensajes = [];
+  let hasAddressErrors = false;
+  let hasPaymentErrors = false;
 
   // Dirección
   const depto = document.getElementById("departamento").value.trim();
@@ -261,6 +282,7 @@ function validarCheckout() {
   const esquina = document.getElementById("esquina").value.trim();
 
   if (!depto) {
+    hasAddressErrors = true;
     esValido = false;
     document.getElementById("departamento").classList.add('is-invalid');
     document.getElementById("error-departamento").style.display = 'block';
@@ -270,6 +292,7 @@ function validarCheckout() {
   }
 
   if (!loc) {
+    hasAddressErrors = true;
     esValido = false;
     document.getElementById("localidad").classList.add('is-invalid');
     document.getElementById("error-localidad").style.display = 'block';
@@ -279,6 +302,7 @@ function validarCheckout() {
   }
 
   if (!calle) {
+    hasAddressErrors = true;
     esValido = false;
     document.getElementById("calle").classList.add('is-invalid');
     document.getElementById("error-calle").style.display = 'block';
@@ -288,6 +312,7 @@ function validarCheckout() {
   }
 
   if (!numero) {
+    hasAddressErrors = true;
     esValido = false;
     document.getElementById("numero").classList.add('is-invalid');
     document.getElementById("error-numero").style.display = 'block';
@@ -297,6 +322,7 @@ function validarCheckout() {
   }
 
   if (!esquina) {
+    hasAddressErrors = true;
     esValido = false;
     document.getElementById("esquina").classList.add('is-invalid');
     document.getElementById("error-esquina").style.display = 'block';
@@ -324,8 +350,8 @@ function validarCheckout() {
   // Forma de pago
   const pagoSel = document.querySelector('input[name="metodoPago"]:checked');
   if (!pagoSel) {
+    hasPaymentErrors = true;
     esValido = false;
-    mensajes.push("Debe seleccionar un método de pago.");
   } else {
     if (pagoSel.value === "tarjetaCredito") {
       const numTar = document.getElementById("numeroTarjeta").value.trim();
@@ -341,8 +367,20 @@ function validarCheckout() {
     // si tienes otros métodos, agregar validación aquí
   }
 
+  // Agregar mensajes generales basados en flags
+  if (hasAddressErrors && hasPaymentErrors) {
+    mensajes.push("Por favor rellenar campos obligatorios y método de pago");
+  } else if (hasAddressErrors) {
+    mensajes.push("Por favor rellenar campos obligatorios");
+  } else if (hasPaymentErrors) {
+    mensajes.push("Debe seleccionar un método de pago.");
+  }
+
   if (mensajes.length > 0) {
-    alert("Por favor corrige los siguientes errores:\n" + mensajes.join("\n"));
+    const modalErroresBody = document.getElementById("modalErroresBody");
+    modalErroresBody.innerHTML = mensajes.map(msg => `<p>${msg}</p>`).join("");
+    const modal = new bootstrap.Modal(document.getElementById("modalErrores"));
+    modal.show();
   }
 
   return esValido;
