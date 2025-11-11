@@ -147,18 +147,29 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         navbarContainer.innerHTML = data;
 
-        // Iniciar  Bootstrap
+        // Inicializar componentes Bootstrap
         const dropdowns = document.querySelectorAll('.dropdown-toggle');
         dropdowns.forEach(dropdown => new bootstrap.Dropdown(dropdown));
 
-        // ejecutar func del badge cuando el elemento está en el DOM
+        //Aplicar tema y configurar botón después de cargar el nav
+        applySavedTheme();
+        setupThemeToggle();
+
+     
+        mostrarNombreUsuario();
+
+        //Actualizar el badge del carrito
         if (typeof actualizarBadgeCarrito === "function") {
           actualizarBadgeCarrito();
         }
 
-        // D/L mode
-        if (typeof initDarkMode === "function") {
-          initDarkMode();
+        // Configurar cierre de sesión
+        const logoutBtn = document.getElementById("logout");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", function () {
+            localStorage.removeItem("userSession");
+            window.location = "login.html";
+          });
         }
       })
       .catch(error => console.error("Error al cargar la barra de navegación:", error));
