@@ -192,6 +192,13 @@ function actualizarBadgeCarrito() {
   }
 }
 
+function updateCart(newCart) {
+  localStorage.setItem("cartProducts", JSON.stringify(newCart));
+  window.dispatchEvent(new Event("cart-updated")); //Anuncia la actualización
+}
+
+window.addEventListener("cart-updated", actualizarBadgeCarrito);
+
 // Ejecutar al cargar la página
 document.addEventListener("DOMContentLoaded", actualizarBadgeCarrito);
 

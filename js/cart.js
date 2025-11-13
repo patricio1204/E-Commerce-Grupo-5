@@ -282,8 +282,18 @@ if (btnFinalizar) {
     if (validarCheckout()) {
       const modal = new bootstrap.Modal(document.getElementById("modalExito"));
       modal.show();
+
+      // Esvaciar el carrito
       localStorage.removeItem("cartProducts");
-      // opcional: window.location.href = "gracias.html";
+
+      // Actualizar el badge
+      window.dispatchEvent(new Event("cart-updated"));
+      mostrarCarrito(); // Actualizar el carrito para que aparezca vacío
+
+      // Redirige a inicio
+      setTimeout(() => {
+      window.location.href = "index.html"; 
+    }, 2000); // 2000ms = 2 segundos
     }
   });
 }
@@ -550,7 +560,7 @@ function agregarEventosCantidad() {
       productosEnCarrito[indice].quantity = nuevaCantidad;
       productosEnCarrito[indice].subtotal = nuevoSubtotal;
 
-      localStorage.setItem("cartProducts", JSON.stringify(productosEnCarrito));
+      updateCart(productosEnCarrito);//Badge escucha esto para actualizarse
 
       actualizarCostos();
     });
@@ -568,7 +578,7 @@ function agregarEventosEliminar() {
       let productosEnCarrito = JSON.parse(localStorage.getItem("cartProducts")) || [];
 
       productosEnCarrito.splice(indice, 1);
-      localStorage.setItem("cartProducts", JSON.stringify(productosEnCarrito));
+      updateCart(productosEnCarrito); //Badge escucha esto para actualizarse
 
       mostrarCarrito();
     }
