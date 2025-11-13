@@ -611,3 +611,52 @@ body.dark-mode .card:hover {
   border: 2px solid #fff;
   z-index: 10;
 }
+
+
+
+/* === LOGIN === */
+.contenedor {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+}
+
+.campos {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.campos label {
+  margin-bottom: 5px;
+  color: var(--label-color);
+  font-weight: 600;
+}
+
+.campos input {
+  padding: 8px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
+}
+
+.boton {
+  width: 100%;
+  background-color: var(--btn-success-bg);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.boton:hover {
+  background-color: var(--btn-success-hover-bg);
+}
