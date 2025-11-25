@@ -1,5 +1,3 @@
-
-
 // Importar dependencias necesarias
 const express = require('express');
 
@@ -11,7 +9,7 @@ const app = express();
 // Clave secreta para firmar tokens JWT (en un entorno real, usar variable de entorno)
 const SECRET_KEY = "ClaveSecretaMuySegura";
 
-/
+
 
 // Ruta POST /login para autenticar usuario
 app.post('/login', (req, res) => {
@@ -21,7 +19,7 @@ app.post('/login', (req, res) => {
   // Validar credenciales (para demo, comparar con valores hardcoded)
   if (username === "usuario" && password === "contraseña") {
     // Generar token JWT con el username como payload
-    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ username }, SECRET_KEY);
 
     // Enviar respuesta con el token generado
     return res.status(200).json({ token });
