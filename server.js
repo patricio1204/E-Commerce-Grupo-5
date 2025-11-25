@@ -10,6 +10,14 @@ const app = express();
 app.use(express.json()); // leer JSON del body
 //
 
+// Middleware para manejar errores de JSON inválido
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    return res.status(400).json({ message: 'JSON inválido en la solicitud' });
+  }
+  next();
+});
+
 // Clave secreta para firmar tokens JWT (en un entorno real, usar variable de entorno)
 const SECRET_KEY = "ClaveSecretaMuySegura";
 
@@ -61,7 +69,7 @@ function authMiddleware(req, res, next) {
 
 // Ruta GET /productos protegida por middleware de autenticación:
 
-app.get('/productos', authMiddleware, (req, res) => {
+app.get('/login', authMiddleware, (req, res) => {
   res.json({
     message: "Acceso autorizado",
     usuario: req.user.username
