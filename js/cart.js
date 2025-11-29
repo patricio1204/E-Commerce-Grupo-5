@@ -24,7 +24,7 @@ function mostrarCarrito() {
             <h4 class="alert-heading">Carrito vacío</h4>
             <p>No hay productos en tu carrito de compras.</p>
             <hr />
-            <p class="mb-0">Visita nuestro <a href="index.html" class="alert-link">catálogo</a> para agregar productos.</p>
+            <p class="mb-0">Visita nuestro <a href="categories.html" class="alert-link">catálogo</a> para agregar productos.</p>
           </div>
         </div>
       </div>`;
@@ -297,10 +297,12 @@ function crearBotonesFinales() {
 /*EVENTOS DESPUÉS DE RENDERIZAR:
 */
 function inicializarEventosPostRender(totalProductos) {
-
+// Actualiza el badge del carrito en la barra de navegación con el total a pagar
   const badge = document.getElementById("carrito-total");
   if (badge) badge.textContent = `Total a pagar: $${totalProductos.toFixed(2)}`;
 
+
+  //llamamos a las funciones que agregan los eventos necesarios:
   agregarEventosCantidad();
   actualizarCostos();
 
